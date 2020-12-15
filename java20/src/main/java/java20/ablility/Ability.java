@@ -1,5 +1,5 @@
 package java20.ablility;
 
-public interface Ability {
-    void doSth();
+public abstract class Ability {
+    abstract void doSth();
 }
