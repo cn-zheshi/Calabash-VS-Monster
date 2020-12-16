@@ -1,11 +1,12 @@
 package java20;
 
 public class Board {
-    int width;
-    int height;
-
-    public Board(int w, int h){
-        width=w;
-        height=h;
+    int[][] realBoard;
+    private static Board board = new Board(10, 20);
+    private Board(int w, int h){
+        realBoard=new int[w][h];
+    }
+    public static Board getBoardInstance(){
+        return board;
     }
 }
