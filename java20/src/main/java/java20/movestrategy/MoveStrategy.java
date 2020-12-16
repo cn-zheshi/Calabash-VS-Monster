@@ -3,9 +3,8 @@ package java20.movestrategy;
 import java.util.ArrayList;
 
 import java20.Board;
-import java20.tools.Pair;
+import java20.tools.Position;
 
 public interface MoveStrategy {
-    Board board=Board.getBoardInstance();
-    ArrayList<Pair<Integer,Integer>> move(int x,int y);
+    ArrayList<Position> positionsCanBeSet(int x,int y);
 }
