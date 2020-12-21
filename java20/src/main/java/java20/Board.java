@@ -19,7 +19,7 @@ public class Board {
      * 
      * @param p0:起点
      * @param p1:终点
-     * @param numOfCreature:生物的编号，详见Creature
+     * @param kindOfCreature:生物的编号，详见Creature
      */
     public void moveTo(Position p0,Position p1,KindOfCreature kindOfCreature){
         moveTo(p0.getX(), p0.getY(), p1.getX(), p1.getY(), kindOfCreature);
@@ -30,7 +30,7 @@ public class Board {
      * @param y0
      * @param x1
      * @param y1
-     * @param numOfCreature
+     * @param kindOfCreature
      */
     public void moveTo(int x0,int y0,int x1,int y1,KindOfCreature kindOfCreature){
         setVal(x0, y0, null);
@@ -63,7 +63,7 @@ public class Board {
     /**
      * 
      * @param p:位置
-     * @param numOfCreature:生物编号
+     * @param kindOfCreature:生物编号
      * @return 这个位置上是否有敌方单位
      */
     public boolean isEnemy(Position p,KindOfCreature kindOfCreature){
