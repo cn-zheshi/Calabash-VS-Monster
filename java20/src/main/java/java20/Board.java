@@ -77,6 +77,28 @@ public class Board {
      * @return 这个位置上是否有敌方单位
      */
     public boolean isEnemy(int x,int y,KindOfCreature kindOfCreature){
-        return kindOfCreature.isCalabash()?realBoard[x][y].isMonster()||realBoard[x][y].isKingMonster():realBoard[x][y].isCalabash()||realBoard[x][y].isGrandpa();
+        if(x<0||y<0||x>=width||y>=height){
+            return false;
+        }
+        return kindOfCreature.isCalabash()||kindOfCreature.isGrandpa()?realBoard[x][y].isMonster()||realBoard[x][y].isKingMonster():realBoard[x][y].isCalabash()||realBoard[x][y].isGrandpa();
+    }
+
+    public KindOfCreature getVal(Position p){
+        return getVal(p.getX(), p.getY());
+    }
+    
+    public KindOfCreature getVal(int x, int y) {
+        if(x<0||y<0||x>=width||y>=height){
+            throw new IndexOutOfBoundsException();
+        }
+        return realBoard[x][y];
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight(){
+        return height;
     }
 }
