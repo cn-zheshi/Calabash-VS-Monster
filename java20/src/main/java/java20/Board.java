@@ -77,6 +77,6 @@ public class Board {
      * @return 这个位置上是否有敌方单位
      */
     public boolean isEnemy(int x,int y,KindOfCreature kindOfCreature){
-        return kindOfCreature.isCalabash()?kindOfCreature.isMonster():realBoard[x][y].isCalabash();
+        return kindOfCreature.isCalabash()?realBoard[x][y].isMonster()||realBoard[x][y].isKingMonster():realBoard[x][y].isCalabash()||realBoard[x][y].isGrandpa();
     }
 }

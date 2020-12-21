@@ -8,9 +8,15 @@ public enum KindOfCreature {
         value=val;
     }
     public boolean isCalabash(){
-        return value<=8&&value>=0;
+        return value<8&&value>=0;
     }
     public boolean isMonster(){
-        return value>8&&value<=13;
+        return value>8&&value<=10;
+    }
+    public boolean isGrandpa(){
+        return value==8;
+    }
+    public boolean isKingMonster(){
+        return value==12||value==11;
     }
 }
