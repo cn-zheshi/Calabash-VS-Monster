@@ -1,5 +1,6 @@
 package java20;
 
+import java20.tools.KindOfCreature;
 import java20.tools.Position;
 
 public class Board {
@@ -58,5 +59,14 @@ public class Board {
             return false;
         }
         return realBoard[x][y]==0;
+    }
+    /**
+     * 
+     * @param p:位置
+     * @param numOfCreature:生物编号
+     * @return 这个位置上是否有敌方单位
+     */
+    public boolean isEnemy(Position p,KindOfCreature kindOfCreature){
+        return kindOfCreature.isCalabash()?kindOfCreature.isMonster():kindOfCreature.isCalabash();
     }
 }
