@@ -6,7 +6,7 @@ import java20.tools.Position;
 public class Board {
     KindOfCreature[][] realBoard;
     int width, height;
-    private static Board board = new Board(10, 20);
+    private static Board board = new Board(10, 10);
 
     private Board(int w, int h) {
         realBoard = new KindOfCreature[w][h];
