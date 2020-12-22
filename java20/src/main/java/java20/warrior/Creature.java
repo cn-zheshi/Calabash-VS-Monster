@@ -23,4 +23,8 @@ public abstract class Creature {
     public void setDead() {
         isDead = true;
     }
+
+    public boolean isDead() {
+        return isDead;
+    }
 }

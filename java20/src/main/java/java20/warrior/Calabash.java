@@ -12,4 +12,13 @@ public class Calabash extends Creature {
         super(kindOfCreature, p, strategy);
         this.ability = ability;
     }
+
+    public boolean canUseAbility() {
+        return ability.canDoSth();
+    }
+
+    public void useAbility() {
+        ability.doSth();
+    }
+
 }

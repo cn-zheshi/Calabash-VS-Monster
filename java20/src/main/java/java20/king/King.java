@@ -28,7 +28,7 @@ public class King {
     }
 
     public void useAbility() {
-
+        ability.doSth();
     }
 
     public void setDead() {
