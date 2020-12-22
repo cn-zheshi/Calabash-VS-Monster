@@ -11,9 +11,10 @@ public abstract class Creature {
     KindOfCreature kind;
     MoveStrategy moveStrategy;
     Position p;
-    protected Creature(KindOfCreature kindOfCreature,Position p,MoveStrategy strategy){
-        this.kind=kindOfCreature;
-        this.p=p;
-        this.moveStrategy=strategy;
+
+    protected Creature(KindOfCreature kindOfCreature, Position p, MoveStrategy strategy) {
+        this.kind = kindOfCreature;
+        this.p = p;
+        this.moveStrategy = strategy;
     }
 }

@@ -14,18 +14,18 @@ public class King {
     MoveStrategy moveStrategy;
     Position p;
 
-    protected King(Ability ability,MoveStrategy strategy,KindOfCreature kindOfCreature,Position p){
-        this.ability=ability;
-        this.moveStrategy=strategy;
-        this.kind=kindOfCreature;
-        this.p=p;
+    protected King(Ability ability, MoveStrategy strategy, KindOfCreature kindOfCreature, Position p) {
+        this.ability = ability;
+        this.moveStrategy = strategy;
+        this.kind = kindOfCreature;
+        this.p = p;
     }
 
-    public boolean canUseAbility(){
+    public boolean canUseAbility() {
         return ability.canDoSth();
     }
 
-    public void useAbility(){
-        
+    public void useAbility() {
+
     }
 }
