@@ -1,4 +1,4 @@
-package java20;
+package java20.gui;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -11,16 +11,16 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.awt.GridLayout;
 
-public class GUI {
+public class MainGUI {
     JButton[][] buttons = new JButton[10][10];
     JFrame fr = new JFrame();
 
     public static void main(String[] args) {
-        new GUI().go();
+        new MainGUI().go();
     }
 
     public void go() {
-        fr.setTitle("载入图片");
+        fr.setTitle("Galabash VS Monster");
         File f = new File(this.getClass().getResource("/").getPath());
         ImageIcon icon = new ImageIcon(f.getPath() + "/background.png");
         fr.getContentPane().setLayout(new GridLayout(10, 10));
@@ -41,6 +41,7 @@ public class GUI {
     public class ClickHandler implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            //TODO: 处理按键
             for (int y = 0; y < 10; ++y) {
                 for (int x = 0; x < 10; ++x) {
                     if (e.getSource().equals(buttons[x][y])) {
