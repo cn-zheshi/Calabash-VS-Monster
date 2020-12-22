@@ -41,6 +41,11 @@ public class Client {
         }
     }
 
+    public void sendMessage(String message) {
+        writer.println(message);
+        writer.flush();
+    }
+
     public class IncomingReader implements Runnable {
         public void run() {
             String message;
