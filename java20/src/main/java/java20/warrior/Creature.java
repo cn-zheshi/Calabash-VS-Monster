@@ -11,10 +11,16 @@ public abstract class Creature {
     KindOfCreature kind;
     MoveStrategy moveStrategy;
     Position p;
+    boolean isDead;
 
     protected Creature(KindOfCreature kindOfCreature, Position p, MoveStrategy strategy) {
         this.kind = kindOfCreature;
         this.p = p;
         this.moveStrategy = strategy;
+        this.isDead = false;
+    }
+
+    public void setDead() {
+        isDead = true;
     }
 }

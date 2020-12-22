@@ -13,12 +13,14 @@ public class King {
     Ability ability;
     MoveStrategy moveStrategy;
     Position p;
+    boolean isDead;
 
-    protected King(Ability ability, MoveStrategy strategy, KindOfCreature kindOfCreature, Position p) {
+    protected King(KindOfCreature kindOfCreature, Position p, MoveStrategy strategy, Ability ability) {
         this.ability = ability;
         this.moveStrategy = strategy;
         this.kind = kindOfCreature;
         this.p = p;
+        this.isDead = false;
     }
 
     public boolean canUseAbility() {
@@ -27,5 +29,13 @@ public class King {
 
     public void useAbility() {
 
+    }
+
+    public void setDead() {
+        isDead = true;
+    }
+
+    public boolean isDead() {
+        return isDead;
     }
 }
