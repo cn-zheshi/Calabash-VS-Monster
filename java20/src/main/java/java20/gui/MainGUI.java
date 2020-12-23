@@ -33,13 +33,19 @@ public class MainGUI {
     ImageIcon scropion;
 
     public static void main(String[] args) {
-        new MainGUI().go();
+        MainGUI.getMainGUIInstance().go();
     }
 
-    public MainGUI() {
+    private static MainGUI mainGUI = new MainGUI();
+
+    private MainGUI() {
         f = new File(this.getClass().getResource("/").getPath());
         background = new ImageIcon(f.getPath() + "/background.png");
         // TODO: 加载图片资源
+    }
+
+    public static MainGUI getMainGUIInstance() {
+        return mainGUI;
     }
 
     public void go() {
@@ -113,6 +119,10 @@ public class MainGUI {
                 }
             }
         }
+    }
+
+    public JFrame getFrame() {
+        return fr;
     }
 
     public class ClickHandler implements ActionListener {
