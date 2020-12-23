@@ -30,5 +30,6 @@ public class Main {
         kings.add(snake);
         Position scorpionPosition=new Position(4, 9);
         King scorpion=new King(KindOfCreature.Scorpion, scorpionPosition, new ScorpionStrategy(), new ScorpionAbility());
+        kings.add(scorpion);
     }
 }
