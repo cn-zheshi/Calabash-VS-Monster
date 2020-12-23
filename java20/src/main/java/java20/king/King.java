@@ -15,7 +15,7 @@ public class King {
     Position p;
     boolean isDead;
 
-    protected King(KindOfCreature kindOfCreature, Position p, MoveStrategy strategy, Ability ability) {
+    public King(KindOfCreature kindOfCreature, Position p, MoveStrategy strategy, Ability ability) {
         this.ability = ability;
         this.moveStrategy = strategy;
         this.kind = kindOfCreature;
