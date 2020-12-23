@@ -31,5 +31,9 @@ public class Main {
         Position scorpionPosition=new Position(4, 9);
         King scorpion=new King(KindOfCreature.Scorpion, scorpionPosition, new ScorpionStrategy(), new ScorpionAbility());
         kings.add(scorpion);
+        //TODO: 添加普通妖精和七个葫芦娃
+    }
+    public void go(){
+
     }
 }
