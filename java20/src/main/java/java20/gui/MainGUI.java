@@ -151,12 +151,14 @@ public class MainGUI {
                 for (int y = 0; y < 10; ++y) {
                     for (int x = 0; x < 10; ++x) {
                         if (e.getSource().equals(buttons[x][y])) {
-                            JDialog dialog = new JDialog(fr, "问题" + (y * 10 + x + 1), true);
-                            dialog.setSize(200, 100);
-                            JTextField text = new JTextField("some questions");
-                            text.setEditable(false);
-                            dialog.getContentPane().add(text);
-                            dialog.setVisible(true);
+                            if (Board.getBoardInstance().isAlly(x, y, Main.getMainInstance().getSide())) {
+                                JDialog dialog = new JDialog(fr, "问题" + (y * 10 + x + 1), true);
+                                dialog.setSize(200, 100);
+                                JTextField text = new JTextField("some questions");
+                                text.setEditable(false);
+                                dialog.getContentPane().add(text);
+                                dialog.setVisible(true);
+                            }
                         }
                     }
                 }
