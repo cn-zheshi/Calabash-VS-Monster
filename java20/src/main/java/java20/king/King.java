@@ -38,4 +38,21 @@ public class King {
     public boolean isDead() {
         return isDead;
     }
+
+    public KindOfCreature getKind() {
+        return kind;
+    }
+
+    public Position getPosition() {
+        return p;
+    }
+
+    public void setPosition(Position position) {
+        p = position;
+    }
+
+    public void setPosition(int x, int y) {
+        p.setX(x);
+        p.setY(y);
+    }
 }

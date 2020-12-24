@@ -41,7 +41,11 @@ public class Board {
         setVal(x1, y1, kindOfCreature);
     }
 
-    private void setVal(int x, int y, KindOfCreature kindOfCreature) {
+    public void setVal(Position p, KindOfCreature kindOfCreature) {
+        setVal(p.getX(), p.getY(), kindOfCreature);
+    }
+
+    public void setVal(int x, int y, KindOfCreature kindOfCreature) {
         realBoard[x][y] = kindOfCreature;
     }
 
