@@ -15,8 +15,16 @@ public class Client {
     BufferedReader reader;
     PrintWriter writer;
     Socket sock;
-    boolean lose = false;
+    boolean lose;
+    private static Client client = new Client();
 
+    private Client() {
+        lose = false;
+    }
+
+    public static Client getClientInstance(){
+        return client;
+    }
     public void go() {
         setUpNetworking();
         Thread readerThread = new Thread(new IncomingReader());
@@ -45,6 +53,10 @@ public class Client {
     public void sendMessage(String message) {
         writer.println(message);
         writer.flush();
+    }
+
+    public boolean isLose() {
+        return lose;
     }
 
     public class IncomingReader implements Runnable {
