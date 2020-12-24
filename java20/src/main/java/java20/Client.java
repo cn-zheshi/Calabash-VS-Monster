@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import java20.gui.MatchingGUI;
+import java20.tools.KindOfCreature;
 
 public class Client {
     BufferedReader reader;
@@ -80,7 +81,12 @@ public class Client {
             thread.start();
             try {
                 while ((message = reader.readLine()) != null) {
-                    if (message.equals("Another Player")) {
+                    if (message.contains("Another Player")) {
+                        if (message.contains("Calabash")) {
+                            Main.getMainInstance().setSide(KindOfCreature.Calabash);
+                        } else {
+                            Main.getMainInstance().setSide(KindOfCreature.Monsters);
+                        }
                         System.out.println(message);
                         break;
                     }

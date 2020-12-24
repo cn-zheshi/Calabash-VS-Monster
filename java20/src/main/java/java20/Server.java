@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.Set;
 
 public class Server {
@@ -80,8 +81,10 @@ public class Server {
                             break;
                         }
                     }
-                    tellAnother("Another Player", enemyMap.get(clientSocket.getPort()));
-                    tellAnother("Another Player", clientSocket.getPort());
+                    Random rand=new Random();
+                    int side=rand.nextInt(2);
+                    tellAnother("Another Player"+(side==0?",Calabash":",Monster"), enemyMap.get(clientSocket.getPort()));
+                    tellAnother("Another Player"+(side==0?",Monster":",Calabash"), clientSocket.getPort());
                 }
             }
         } catch (Exception e) {
