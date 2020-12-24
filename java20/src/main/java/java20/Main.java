@@ -38,6 +38,7 @@ public class Main {
     ArrayList<King> kings;
     KindOfCreature side;
     boolean lose;
+    boolean isMyTurn;
     private static Main mainInstance = new Main();
 
     public static Main getMainInstance() {
@@ -105,6 +106,7 @@ public class Main {
         // TODO:游戏主逻辑
         Client.getClientInstance().go();
         MainGUI.getMainGUIInstance().go();
+        isMyTurn = this.side == KindOfCreature.Calabash;
         tellSth("匹配成功", "你的阵营:" + (this.side == KindOfCreature.Calabash ? "Calabash" : "Monsters"), 1000);
         while (!lose && !Client.getClientInstance().isLose()) {
             try {
@@ -127,6 +129,14 @@ public class Main {
 
     public KindOfCreature getSide() {
         return side;
+    }
+
+    public boolean isMyTurn() {
+        return isMyTurn;
+    }
+
+    public void setIsMyTurn(boolean isMyTurn) {
+        this.isMyTurn = isMyTurn;
     }
 
     public void setLose(boolean lose) {
