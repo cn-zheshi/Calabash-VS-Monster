@@ -1,5 +1,8 @@
 package java20.warrior;
 
+import java.util.ArrayList;
+
+import java20.Board;
 import java20.movestrategy.MoveStrategy;
 import java20.tools.KindOfCreature;
 import java20.tools.Position;
@@ -20,8 +23,17 @@ public abstract class Creature {
         this.isDead = false;
     }
 
-    public void setDead() {
-        isDead = true;
+    public void move(Position position) {
+        Board.getBoardInstance().moveTo(p, position, kind);
+        this.p = position;
+    }
+
+    public void move(int x, int y) {
+        move(new Position(x, y));
+    }
+
+    public void setDead(boolean isDead) {
+        this.isDead = isDead;
     }
 
     public boolean isDead() {
@@ -36,12 +48,8 @@ public abstract class Creature {
         return p;
     }
 
-    public void setPosition(Position position) {
-        p = position;
+    public ArrayList<Position> getPositionsCanBeSet() {
+        return moveStrategy.positionsCanBeSet(p.getX(), p.getY());
     }
 
-    public void setPosition(int x, int y) {
-        p.setX(x);
-        p.setY(y);
-    }
 }
