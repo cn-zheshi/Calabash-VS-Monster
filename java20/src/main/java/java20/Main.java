@@ -17,7 +17,7 @@ import java20.ablility.SixthAbility;
 import java20.ablility.SnakeAbility;
 import java20.ablility.ThirdAbility;
 import java20.gui.MainGUI;
-import java20.king.King;
+import java20.warrior.King;
 import java20.movestrategy.FirstAndSecondStrategy;
 import java20.movestrategy.ForthAndFifthStrategy;
 import java20.movestrategy.GrandpaStrategy;
