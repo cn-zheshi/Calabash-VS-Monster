@@ -61,6 +61,7 @@ public class MainGUI {
             }
         }
         fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        repaint();
         fr.setVisible(true);
         fr.validate();
     }
