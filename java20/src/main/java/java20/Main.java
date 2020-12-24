@@ -36,8 +36,8 @@ import java.awt.Font;
 public class Main {
     ArrayList<Creature> creatures;
     ArrayList<King> kings;
-    Client client;
     KindOfCreature side;
+    boolean lose;
     private static Main mainInstance = new Main();
 
     public static Main getMainInstance() {
@@ -49,9 +49,9 @@ public class Main {
     }
 
     private Main() {
+        lose = false;
         kings = new ArrayList<King>();
         creatures = new ArrayList<Creature>();
-        client = new Client();
         Position grandpaPosition = new Position(5, 0);
         King grandpa = new King(KindOfCreature.Grandpa, grandpaPosition, new GrandpaStrategy(), new GrandpaAbility());
         kings.add(grandpa);
@@ -103,19 +103,44 @@ public class Main {
 
     public void go() {
         // TODO:游戏主逻辑
-        client.go();
+        Client.getClientInstance().go();
         MainGUI.getMainGUIInstance().go();
-        tellSide();
+        tellSth("匹配成功", "你的阵营:" + (this.side == KindOfCreature.Calabash ? "Calabash" : "Monsters"), 1000);
+        while (!lose && !Client.getClientInstance().isLose()) {
+            try {
+                Thread.sleep(16);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            MainGUI.getMainGUIInstance().repaint();
+        }
+        if (lose) {
+            tellSth("你输了", "You Lose", 500);
+        } else {
+            tellSth("你赢了", "You Win", 500);
+        }
     }
 
     public void setSide(KindOfCreature side) {
         this.side = side;
     }
 
-    private void tellSide() {
-        JDialog dialog = new JDialog(MainGUI.getMainGUIInstance().getFrame(), "匹配成功", true);
-        dialog.setSize(1000, 200);
-        JTextField text = new JTextField("你的阵营: " + (this.side == KindOfCreature.Calabash ? "Calabash" : "Monsters"));
+    public KindOfCreature getSide() {
+        return side;
+    }
+
+    public void setLose(boolean lose) {
+        this.lose = lose;
+    }
+
+    public boolean getLose() {
+        return lose;
+    }
+
+    private void tellSth(String title, String content, int width) {
+        JDialog dialog = new JDialog(MainGUI.getMainGUIInstance().getFrame(), title, true);
+        dialog.setSize(width, 200);
+        JTextField text = new JTextField(content);
         text.setFont(new FontUIResource("宋体", Font.BOLD, 100));
         text.setEditable(false);
         dialog.getContentPane().add(text);
