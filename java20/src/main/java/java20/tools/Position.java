@@ -27,4 +27,17 @@ public class Position {
     public void setY(int y) {
         this.y = y;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o != null && o instanceof Position) {
+            Position position = (Position) o;
+            return position.getX() == x && position.getY() == y;
+        } else {
+            return false;
+        }
+    }
 }
