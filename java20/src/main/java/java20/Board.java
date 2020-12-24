@@ -89,12 +89,25 @@ public class Board {
      * @return 这个位置上是否有敌方单位
      */
     public boolean isEnemy(int x, int y, KindOfCreature kindOfCreature) {
-        if (x < 0 || y < 0 || x >= width || y >= height) {
+        if (x < 0 || y < 0 || x >= width || y >= height || realBoard[x][y] == null) {
             return false;
         }
         return kindOfCreature.isCalabash() || kindOfCreature.isGrandpa()
                 ? realBoard[x][y].isMonster() || realBoard[x][y].isKingMonster()
                 : realBoard[x][y].isCalabash() || realBoard[x][y].isGrandpa();
+    }
+
+    public boolean isAlly(Position p, KindOfCreature kindOfCreature) {
+        return isAlly(p.getX(), p.getY(), kindOfCreature);
+    }
+
+    public boolean isAlly(int x, int y, KindOfCreature kindOfCreature) {
+        if (x < 0 || y < 0 || x >= width || y >= height || realBoard[x][y] == null) {
+            return false;
+        }
+        return kindOfCreature.isCalabash() || kindOfCreature.isGrandpa()
+                ? realBoard[x][y].isCalabash() || realBoard[x][y].isGrandpa()
+                : realBoard[x][y].isMonster() || realBoard[x][y].isKingMonster();
     }
 
     public KindOfCreature getVal(Position p) {
