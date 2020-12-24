@@ -11,5 +11,5 @@ public interface MoveStrategy {
      * @param y:生物的纵坐标
      * @return 所有可以被移动到的点位
      */
-    ArrayList<Position> positionsCanBeSet(int x, int y);
+    public ArrayList<Position> positionsCanBeSet(int x, int y);
 }
