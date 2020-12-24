@@ -22,9 +22,10 @@ public class Client {
         lose = false;
     }
 
-    public static Client getClientInstance(){
+    public static Client getClientInstance() {
         return client;
     }
+
     public void go() {
         setUpNetworking();
         Thread readerThread = new Thread(new IncomingReader());
@@ -62,6 +63,7 @@ public class Client {
     public class IncomingReader implements Runnable {
         public void run() {
             String message;
+            System.out.println("reading");
             try {
                 while (((message = reader.readLine()) != null) && !lose) {
                     if (message.equals("Lose")) {
@@ -104,6 +106,7 @@ public class Client {
                     }
                 }
             } catch (Exception e) {
+                thread.stop();
                 e.printStackTrace();
             }
         }
