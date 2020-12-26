@@ -147,6 +147,12 @@ public class Main {
         return lose;
     }
 
+    public ArrayList<Creature> getCreatures(){
+        return creatures;
+    }
+    public ArrayList<King> getKings(){
+        return kings;
+    }
     private void tellSth(String title, String content, int width) {
         JDialog dialog = new JDialog(MainGUI.getMainGUIInstance().getFrame(), title, true);
         dialog.setSize(width, 200);

@@ -21,6 +21,8 @@ public class MainGUI {
     JFrame fr;
     JPanel panel;
     JButton turnEndButton;
+    JButton moveButton;
+    JButton useAbilityButton;
     File f;
     ImageIcon background;
     ImageIcon first;
