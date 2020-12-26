@@ -26,6 +26,5 @@ public class AppTest {
         int len = test.size();
         for (int i = 0; i < len; ++i)
             System.out.println(test.get(i).toString());
-
     }
 }

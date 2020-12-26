@@ -34,6 +34,10 @@ public abstract class Creature {
         move(new Position(x, y));
     }
 
+    public Status getStatus() {
+        return this.status;
+    }
+
     public void setStatus(Status status) {
         this.status = status;
     }

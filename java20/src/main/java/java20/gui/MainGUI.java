@@ -1,20 +1,14 @@
 package java20.gui;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import java20.Board;
-import java20.Main;
+import java20.Controller;
 import java20.tools.KindOfCreature;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.awt.GridLayout;
 
 public class MainGUI {
 
@@ -37,7 +31,7 @@ public class MainGUI {
     ImageIcon monster;
     ImageIcon strongerMonster;
     ImageIcon snake;
-    ImageIcon scropion;
+    ImageIcon scorpion;
 
     public static void main(String[] args) {
         MainGUI.getMainGUIInstance().go();
@@ -126,7 +120,7 @@ public class MainGUI {
                     continue;
                 }
                 if (kind == KindOfCreature.Scorpion) {
-                    buttons[x][y].setIcon(scropion);
+                    buttons[x][y].setIcon(scorpion);
                     continue;
                 }
                 if (kind == KindOfCreature.Monster) {
@@ -150,11 +144,11 @@ public class MainGUI {
         @Override
         public void actionPerformed(ActionEvent e) {
             // TODO: 处理按键
-            if (Main.getMainInstance().isMyTurn()) {
+            if (Controller.getInstance().isMyTurn()) {
                 for (int y = 0; y < 10; ++y) {
                     for (int x = 0; x < 10; ++x) {
                         if (e.getSource().equals(buttons[x][y])) {
-                            if (Board.getBoardInstance().isAlly(x, y, Main.getMainInstance().getSide())) {
+                            if (Board.getBoardInstance().isAlly(x, y, Controller.getInstance().getSide())) {
                                 JDialog dialog = new JDialog(fr, "问题" + (y * 10 + x + 1), true);
                                 dialog.setSize(200, 100);
                                 JTextField text = new JTextField("some questions");
@@ -174,7 +168,7 @@ public class MainGUI {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Main.getMainInstance().setIsMyTurn(false);
+            Controller.getInstance().setIsMyTurn(false);
         }
 
     }

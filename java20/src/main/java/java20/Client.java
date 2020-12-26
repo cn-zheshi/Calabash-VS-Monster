@@ -1,15 +1,10 @@
 package java20;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
-
 import java20.gui.MatchingGUI;
 import java20.tools.KindOfCreature;
+
+import java.io.*;
+import java.net.Socket;
 
 public class Client {
     BufferedReader reader;
@@ -97,9 +92,9 @@ public class Client {
                 while ((message = reader.readLine()) != null) {
                     if (message.contains("Another Player")) {
                         if (message.contains("Calabash")) {
-                            Main.getMainInstance().setSide(KindOfCreature.Calabash);
+                            Controller.getInstance().setSide(KindOfCreature.Calabash);
                         } else {
-                            Main.getMainInstance().setSide(KindOfCreature.Monsters);
+                            Controller.getInstance().setSide(KindOfCreature.Monsters);
                         }
                         System.out.println(message);
                         break;

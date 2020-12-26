@@ -5,7 +5,7 @@ import java20.tools.Position;
 import java20.warrior.Creature;
 
 public class Board {
-    
+
     KindOfCreature[][] realBoard;
     int width, height;
     private static Board board = new Board(10, 10);
@@ -118,9 +118,9 @@ public class Board {
     }
 
     public Creature getCreature(Position p) {
-        for(int i=0;i<Main.getMainInstance().getCreatures().size();++i){
-            if(Main.getMainInstance().getCreatures().get(i).getPosition().equals(p)){
-                return Main.getMainInstance().getCreatures().get(i);
+        for (int i = 0; i < Controller.getInstance().getCreatures().size(); ++i) {
+            if (Controller.getInstance().getCreatures().get(i).getPosition().equals(p)) {
+                return Controller.getInstance().getCreatures().get(i);
             }
         }
         return null;
