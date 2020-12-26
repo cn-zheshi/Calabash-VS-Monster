@@ -1,0 +1,164 @@
+package java20.core.view;
+
+import java20.core.model.battlefield.Board;
+import java20.core.Controller;
+import java20.util.Race;
+import lombok.Data;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+
+@Data
+public class MainGUI {
+
+    private JButton[][] buttons;
+    private JFrame frame;
+    private JPanel panel;
+    private JButton turnEndButton;
+    private JButton moveButton;
+    private JButton useAbilityButton;
+    private File f;
+    private ImageIcon background;
+    private ImageIcon first;
+    private ImageIcon second;
+    private ImageIcon third;
+    private ImageIcon forth;
+    private ImageIcon fifth;
+    private ImageIcon sixth;
+    private ImageIcon seventh;
+    private ImageIcon grandpa;
+    private ImageIcon monster;
+    private ImageIcon strongerMonster;
+    private ImageIcon snake;
+    private ImageIcon scorpion;
+
+    public static void main(String[] args) {
+        MainGUI.getInstance().go();
+    }
+
+    private static MainGUI mainGUI = new MainGUI();
+
+    private MainGUI() {
+        buttons = new JButton[10][10];
+        turnEndButton = new JButton("Turn End");
+        frame = new JFrame();
+        panel = new JPanel();
+        f = new File(this.getClass().getResource("/").getPath());
+        // TODO: 加载图片资源
+        // background = new ImageIcon(f.getPath() + "/background.png");
+        // first = new ImageIcon(f.getPath() + "/first.png");
+    }
+
+    public static MainGUI getInstance() {
+        return mainGUI;
+    }
+
+    public void go() {
+        frame.setTitle("Calabash VS Monster");
+        frame.getContentPane().add(panel);
+        frame.getContentPane().add(turnEndButton);
+        panel.setLayout(new GridLayout(10, 10));
+        panel.setSize(600, 600);
+        turnEndButton.addActionListener(e -> Controller.getInstance().setMyTurn(false));
+        turnEndButton.setSize(120, 40);
+        turnEndButton.setLocation(640, 500);
+        frame.setSize(800, 635);
+        frame.setLayout(null);
+        frame.setResizable(false);
+        for (int y = 0; y < 10; ++y) {
+            for (int x = 0; x < 10; ++x) {
+                buttons[x][y] = new JButton(background);
+                buttons[x][y].addActionListener(new ClickHandler());
+                panel.add(buttons[x][y]);
+            }
+        }
+//        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.repaint();
+        frame.setVisible(true);
+        frame.validate();
+    }
+
+    public void repaint() {
+        for (int y = 0; y < 10; ++y) {
+            for (int x = 0; x < 10; ++x) {
+                Race kind = Board.getInstance().getVal(x, y);
+                if (kind == Race.First) {
+                    buttons[x][y].setIcon(first);
+                    continue;
+                }
+                if (kind == Race.Second) {
+                    buttons[x][y].setIcon(second);
+                    continue;
+                }
+                if (kind == Race.Third) {
+                    buttons[x][y].setIcon(third);
+                    continue;
+                }
+                if (kind == Race.Forth) {
+                    buttons[x][y].setIcon(forth);
+                    continue;
+                }
+                if (kind == Race.Fifth) {
+                    buttons[x][y].setIcon(fifth);
+                    continue;
+                }
+                if (kind == Race.Sixth) {
+                    buttons[x][y].setIcon(sixth);
+                    continue;
+                }
+                if (kind == Race.Seventh) {
+                    buttons[x][y].setIcon(seventh);
+                    continue;
+                }
+                if (kind == Race.Grandpa) {
+                    buttons[x][y].setIcon(grandpa);
+                    continue;
+                }
+                if (kind == Race.Snake) {
+                    buttons[x][y].setIcon(snake);
+                    continue;
+                }
+                if (kind == Race.Scorpion) {
+                    buttons[x][y].setIcon(scorpion);
+                    continue;
+                }
+                if (kind == Race.Goblin) {
+                    buttons[x][y].setIcon(monster);
+                    continue;
+                }
+                if (kind == null) {
+                    buttons[x][y].setIcon(background);
+                }
+            }
+        }
+    }
+
+    public class ClickHandler implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // TODO: 处理按键
+            if (Controller.getInstance().isMyTurn()) {
+                for (int y = 0; y < 10; ++y) {
+                    for (int x = 0; x < 10; ++x) {
+                        if (e.getSource().equals(buttons[x][y])) {
+                            if (Board.getInstance().isAlly(x, y, Controller.getInstance().getSide())) {
+                                JDialog dialog = new JDialog(frame, "问题" + (y * 10 + x + 1), true);
+                                dialog.setSize(200, 100);
+                                JTextField text = new JTextField("some questions");
+                                text.setEditable(false);
+                                dialog.getContentPane().add(text);
+                                dialog.setVisible(true);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
