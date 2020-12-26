@@ -2,6 +2,7 @@ package java20;
 
 import java20.tools.KindOfCreature;
 import java20.tools.Position;
+import java20.warrior.Creature;
 
 public class Board {
     
@@ -114,6 +115,19 @@ public class Board {
             throw new IndexOutOfBoundsException();
         }
         return realBoard[x][y];
+    }
+
+    public Creature getCreature(Position p) {
+        for(int i=0;i<Main.getMainInstance().getCreatures().size();++i){
+            if(Main.getMainInstance().getCreatures().get(i).getPosition().equals(p)){
+                return Main.getMainInstance().getCreatures().get(i);
+            }
+        }
+        return null;
+    }
+
+    public Creature getCreature(int x, int y) {
+        return getCreature(new Position(x, y));
     }
 
     public int getWidth() {
