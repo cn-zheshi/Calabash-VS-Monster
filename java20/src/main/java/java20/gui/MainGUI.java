@@ -17,6 +17,7 @@ import java.io.File;
 import java.awt.GridLayout;
 
 public class MainGUI {
+
     JButton[][] buttons;
     JFrame fr;
     JPanel panel;

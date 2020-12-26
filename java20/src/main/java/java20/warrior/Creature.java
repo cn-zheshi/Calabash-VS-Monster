@@ -1,11 +1,12 @@
 package java20.warrior;
 
-import java.util.ArrayList;
-
 import java20.Board;
 import java20.movestrategy.MoveStrategy;
 import java20.tools.KindOfCreature;
 import java20.tools.Position;
+import java20.tools.Status;
+
+import java.util.ArrayList;
 
 public abstract class Creature {
     /**
@@ -14,13 +15,14 @@ public abstract class Creature {
     KindOfCreature kind;
     MoveStrategy moveStrategy;
     Position p;
-    boolean isDead;
+    Status status;
+
 
     protected Creature(KindOfCreature kindOfCreature, Position p, MoveStrategy strategy) {
         this.kind = kindOfCreature;
         this.p = p;
         this.moveStrategy = strategy;
-        this.isDead = false;
+        this.status = Status.ALIVE;
     }
 
     public void move(Position position) {
@@ -32,12 +34,24 @@ public abstract class Creature {
         move(new Position(x, y));
     }
 
-    public void setDead(boolean isDead) {
-        this.isDead = isDead;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public boolean isDead() {
-        return isDead;
+        return this.status.equals(Status.DEAD);
+    }
+
+    public boolean isALive() {
+        return this.status.equals(Status.ALIVE);
+    }
+
+    public boolean isAvailable() {
+        return this.status.equals(Status.AVAILABLE);
+    }
+
+    public boolean isReachable() {
+        return this.status.equals(Status.REACHABLE);
     }
 
     public KindOfCreature getKind() {

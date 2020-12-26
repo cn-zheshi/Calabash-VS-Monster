@@ -10,7 +10,7 @@ public class FirstAndSecondStrategy implements MoveStrategy {
 
     @Override
     public ArrayList<Position> positionsCanBeSet(int x, int y) {
-        ArrayList<Position> arr = new ArrayList<Position>();
+        ArrayList<Position> arr = new ArrayList<>();
         boolean left = true;
         boolean right = true;
         boolean up = true;

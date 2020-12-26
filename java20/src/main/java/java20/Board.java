@@ -4,6 +4,7 @@ import java20.tools.KindOfCreature;
 import java20.tools.Position;
 
 public class Board {
+    
     KindOfCreature[][] realBoard;
     int width, height;
     private static Board board = new Board(10, 10);
@@ -19,7 +20,6 @@ public class Board {
     }
 
     /**
-     * 
      * @param p0:起点
      * @param p1:终点
      * @param kindOfCreature:生物的编号，详见Creature
@@ -29,7 +29,6 @@ public class Board {
     }
 
     /**
-     * 
      * @param x0
      * @param y0
      * @param x1
@@ -50,7 +49,6 @@ public class Board {
     }
 
     /**
-     * 
      * @param p:位置
      * @return 这个位置上是否已经有单位，有则返回false
      */
@@ -59,7 +57,6 @@ public class Board {
     }
 
     /**
-     * 
      * @param x:横坐标
      * @param y:纵坐标
      * @return 这个位置上是否已经有单位，有则返回false
@@ -72,7 +69,6 @@ public class Board {
     }
 
     /**
-     * 
      * @param p:位置
      * @param kindOfCreature:生物编号
      * @return 这个位置上是否有敌方单位
@@ -82,7 +78,6 @@ public class Board {
     }
 
     /**
-     * 
      * @param x:横坐标
      * @param y:纵坐标
      * @param kindOfCreature:生物编号

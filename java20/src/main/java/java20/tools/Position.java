@@ -28,6 +28,20 @@ public class Position {
         this.y = y;
     }
 
+
+    /**
+     * 默认边界为 0 - edge 不包括 edge
+     *
+     * @param edgeX x的上界
+     * @param edgeY y的上界
+     * @return 是否越界
+     */
+    public boolean isValid(int edgeX, int edgeY) {
+        if (this.x < 0 || this.x >= edgeX) return false;
+        if (this.y < 0 || this.y >= edgeY) return false;
+        return true;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -39,5 +53,13 @@ public class Position {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Position{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }

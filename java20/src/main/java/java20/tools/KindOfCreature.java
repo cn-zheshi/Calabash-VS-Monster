@@ -1,9 +1,20 @@
 package java20.tools;
 
 public enum KindOfCreature {
-    Calabash(0), First(1), Second(2), Third(3), Forth(4), Fifth(5), Sixth(6), Seventh(7), Grandpa(8), // Calabash and
-                                                                                                      // Grandpa
-    Monster(9), StrongerMonster(10), Snake(11), Scorpion(12), Monsters(13);// Monsters
+    Calabash(0),
+    First(1),
+    Second(2),
+    Third(3),
+    Forth(4),
+    Fifth(5),
+    Sixth(6),
+    Seventh(7),
+    Grandpa(8), // Calabash and Grandpa
+    Monster(9),
+    StrongerMonster(10),
+    Snake(11),
+    Scorpion(12),
+    Monsters(13);// Monsters
 
     private int value;
 
