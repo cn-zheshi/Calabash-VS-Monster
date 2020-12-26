@@ -123,6 +123,11 @@ public class Board {
                 return Controller.getInstance().getCreatures().get(i);
             }
         }
+        for(int i=0;i<Main.getMainInstance().getKings().size();++i){
+            if(Main.getMainInstance().getKings().get(i).getPosition().equals(p)){
+                return Main.getMainInstance().getKings().get(i);
+            }
+        }
         return null;
     }
 
