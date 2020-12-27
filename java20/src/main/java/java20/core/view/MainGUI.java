@@ -63,7 +63,11 @@ public class MainGUI {
         frame.getContentPane().add(turnEndButton);
         panel.setLayout(new GridLayout(10, 10));
         panel.setSize(600, 600);
-        turnEndButton.addActionListener(e -> Controller.getInstance().setMyTurn(false));
+        turnEndButton.addActionListener(e -> {
+            Controller controller = Controller.getInstance();
+            controller.setMyTurn(false);
+            controller.updateTurn();
+        });
         turnEndButton.setSize(120, 40);
         turnEndButton.setLocation(640, 500);
         frame.setSize(800, 635);

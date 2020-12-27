@@ -16,24 +16,25 @@ public class PickFrame extends JFrame {
     private boolean end;
     private int result;
 
-    public PickFrame(String name, int num, String[] names) {
-        super(name);
+    public PickFrame(String guiName, String[] choices, int width, int height) {
+        super(guiName);
         this.end = false;
         this.result = -1;
-        this.pickPanel = new PickPanel(num, names);
+        this.pickPanel = new PickPanel(choices);
+        this.setGui(width, height);
     }
 
-    public void setGui() {
+    public void setGui(int width, int height) {
         this.setBackground(Color.BLACK);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setBounds(550, 275, 210, 115);
+        this.setBounds(550, 275, width, height);
         this.getContentPane().add(BorderLayout.CENTER, this.pickPanel);
         this.setResizable(false);
-        this.setVisible(true);
+        this.setVisible(false);
     }
 
     public void go() {
-        this.setGui();
+        this.setVisible(true);
         while (!this.end) {
             try {
                 Thread.sleep(0);
@@ -46,10 +47,11 @@ public class PickFrame extends JFrame {
 
     public class PickPanel extends JPanel {
 
-        public PickPanel(int num, String[] names) {
+        public PickPanel(String[] choices) {
             this.setGui();
+            int num = choices.length;
             for (int i = 0; i < num; ++i) {
-                Button cur = new Button(names[i], i);
+                Button cur = new Button(choices[i], i);
                 cur.addActionListener(e -> {
                     PickFrame.this.end = true;
                     PickFrame.this.result = cur.num;
@@ -73,8 +75,8 @@ public class PickFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-        PickFrame test = new PickFrame("选择", 5,
-                new String[]{"大娃", "二娃", "三娃", "四娃", "五娃"});
+        PickFrame test = new PickFrame("选择",
+                new String[]{"大娃", "二娃", "三娃", "四娃", "五娃"}, 210, 115);
         test.go();
         System.out.println(test.getResult());
     }

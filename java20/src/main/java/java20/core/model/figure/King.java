@@ -4,13 +4,16 @@ import java20.core.model.battlefield.Position;
 import java20.core.model.figure.movestrategy.MoveStrategy;
 import java20.core.model.figure.skill.Skill;
 import java20.util.Race;
+import lombok.Getter;
 
 /**
  * @author hwd
  * @date 2020-12-27 12:14 AM
  **/
+
+@Getter
 public class King extends Creature {
-    
+
     private Skill skill;
 
     public King(String name, Race race, Position position, MoveStrategy moveStrategy, Skill skill) {
@@ -23,6 +26,6 @@ public class King extends Creature {
     }
 
     public boolean isAvailable() {
-        return this.skill.isAvailable(this);
+        return this.skill.isAvailable();
     }
 }

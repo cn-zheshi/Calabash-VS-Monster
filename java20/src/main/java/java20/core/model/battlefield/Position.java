@@ -15,6 +15,11 @@ public class Position {
         this(0, 0);
     }
 
+    public Position(Position src) {
+        this.x = src.getX();
+        this.y = src.getY();
+    }
+
     /**
      * 默认边界为 0 - edge 不包括 edge
      *

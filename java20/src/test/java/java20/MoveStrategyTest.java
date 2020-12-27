@@ -1,7 +1,7 @@
 package java20;
 
-import java20.core.model.figure.movestrategy.Queen;
 import java20.core.model.battlefield.Position;
+import java20.core.model.figure.movestrategy.Queen;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 /**
  * Unit test for simple App.
  */
-public class AppTest {
+public class MoveStrategyTest {
     /**
      * Rigorous Test :-)
      */

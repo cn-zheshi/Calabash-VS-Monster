@@ -1,12 +1,10 @@
 package java20.core.model.battlefield;
 
-import java20.core.Controller;
 import java20.core.model.figure.Creature;
 import java20.core.model.figure.King;
 import java20.util.Race;
 import lombok.Data;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 @Data
@@ -30,10 +28,13 @@ public class Board {
     }
 
 
-    public void set(ArrayList<King> kings, ArrayList<Creature> creatures, Race[][] grid) {
+    public void set(ArrayList<King> kings, ArrayList<Creature> creatures) {
         this.kings = kings;
         this.creatures = creatures;
-        this.grid = grid;
+    }
+
+    public void clearGrid() {
+        this.grid = new Race[this.width][this.height];
     }
 
     /**

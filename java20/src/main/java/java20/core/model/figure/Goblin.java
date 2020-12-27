@@ -4,11 +4,15 @@ import java20.core.model.battlefield.Position;
 import java20.core.model.figure.movestrategy.MoveStrategy;
 import java20.core.model.figure.skill.Skill;
 import java20.util.Race;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author hwd
- * @date 2020-12-27 12:15 AM
+ * @date 2020-12-27
  **/
+@Getter
+@Setter
 public class Goblin extends Creature {
 
     private Skill skill;
@@ -19,10 +23,11 @@ public class Goblin extends Creature {
     }
 
     public void employ() {
-        this.skill.employ(this);
+        if (this.skill != null)
+            this.skill.employ(this);
     }
 
     public boolean isAvailable() {
-        return this.skill.isAvailable(this);
+        return this.skill.isAvailable();
     }
 }
