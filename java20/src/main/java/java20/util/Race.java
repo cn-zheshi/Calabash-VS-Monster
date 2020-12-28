@@ -3,7 +3,7 @@ package java20.util;
 public enum Race {
 
     /**
-     * Calabash和Monsters是阵营名
+     * Calabash和Monster是阵营名
      */
     Calabash(0),
     Monster(13),

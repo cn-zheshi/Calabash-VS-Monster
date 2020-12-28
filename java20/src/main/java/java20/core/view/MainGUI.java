@@ -45,6 +45,8 @@ public class MainGUI {
     private MainGUI() {
         buttons = new JButton[10][10];
         turnEndButton = new JButton("Turn End");
+        moveButton = new JButton("Move");
+        useAbilityButton = new JButton("Ability");
         frame = new JFrame();
         panel = new JPanel();
         f = new File(this.getClass().getResource("/").getPath());
@@ -61,6 +63,8 @@ public class MainGUI {
         frame.setTitle("Calabash VS Monster");
         frame.getContentPane().add(panel);
         frame.getContentPane().add(turnEndButton);
+        frame.getContentPane().add(moveButton);
+        frame.getContentPane().add(useAbilityButton);
         panel.setLayout(new GridLayout(10, 10));
         panel.setSize(600, 600);
         turnEndButton.addActionListener(e -> {
@@ -164,5 +168,25 @@ public class MainGUI {
                 }
             }
         }
+    }
+
+    public class MoveButton implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (Controller.getInstance().isMyTurn() && !Controller.getInstance().isMoving()) {
+                Controller.getInstance().setIsMoving(true);
+            }
+        }
+
+    }
+
+    public class UseAbilityButton implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Controller.getInstance().setIsMoving(true);
+        }
+
     }
 }
