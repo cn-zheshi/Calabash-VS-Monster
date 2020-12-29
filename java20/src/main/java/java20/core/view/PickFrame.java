@@ -26,7 +26,7 @@ public class PickFrame extends JFrame {
 
     public void setGui(int width, int height) {
         this.setBackground(Color.BLACK);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setBounds(550, 275, width, height);
         this.getContentPane().add(BorderLayout.CENTER, this.pickPanel);
         this.setResizable(false);
@@ -75,8 +75,7 @@ public class PickFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-        PickFrame test = new PickFrame("选择",
-                new String[]{"大娃", "二娃", "三娃", "四娃", "五娃"}, 210, 115);
+        PickFrame test = new PickFrame("选择", new String[] { "大娃", "二娃", "三娃", "四娃", "五娃" }, 210, 115);
         test.go();
         System.out.println(test.getResult());
     }
