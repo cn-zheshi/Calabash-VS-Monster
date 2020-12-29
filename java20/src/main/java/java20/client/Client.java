@@ -87,8 +87,11 @@ public class Client {
 
         public void run() {
             String message;
-            Thread thread = new Thread(() -> {
-                Controller.getInstance().getMatchingGUI().go();
+            Thread thread = new Thread(new Runnable(){
+                @Override
+                public void run(){
+                    Controller.getInstance().getMatchingGUI().go();
+                }
             });
             thread.start();
             try {
