@@ -150,16 +150,15 @@ public class Controller {
 
     public void positionBeChosed(Position position) {
         // TODO: 处理按键
-        if (positionBeChosed == null) {
-            positionBeChosed = position;
-            return;
-        }
         if (isMoving) {
             Creature creature = Board.getInstance().getCreature(positionBeChosed);
             if (creature.getPosList().contains(position)) {
                 creature.move(position);
                 positionBeChosed = null;
             }
+        } else {
+            positionBeChosed = position;
+            return;
         }
     }
 

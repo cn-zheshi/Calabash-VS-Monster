@@ -2,6 +2,7 @@ package java20.core.view;
 
 import java20.core.model.battlefield.Board;
 import java20.core.model.battlefield.Position;
+import java20.core.model.figure.Creature;
 import java20.client.Client;
 import java20.core.Controller;
 import java20.util.Race;
@@ -102,6 +103,7 @@ public class MainGUI {
         for (int y = 0; y < 10; ++y) {
             for (int x = 0; x < 10; ++x) {
                 Race kind = Board.getInstance().getVal(x, y);
+                buttons[x][y].setBackground(Color.WHITE);
                 if (kind == Race.First) {
                     buttons[x][y].setIcon(first);
                     continue;
@@ -149,6 +151,14 @@ public class MainGUI {
                 if (kind == null) {
                     buttons[x][y].setIcon(background);
                 }
+            }
+        }
+        if(Controller.getInstance().isMoving()){
+            Position p=Controller.getInstance().getPositionBeChosed();
+            Creature creature=Board.getInstance().getCreature(p);
+            for(int i=0;i<creature.getPosList().size();++i){
+                Position position=creature.getPosList().get(i);
+                buttons[position.getX()][position.getY()].setBackground(Color.GREEN);
             }
         }
     }
