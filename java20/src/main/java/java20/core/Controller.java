@@ -150,36 +150,45 @@ public class Controller {
 
     public void positionBeChosed(Position position) {
         // TODO: 处理按键
-        if(positionBeChosed==null){
-            positionBeChosed=position;
+        if (positionBeChosed == null) {
+            positionBeChosed = position;
             return;
         }
-        if(isMoving){
-            Creature creature=Board.getInstance().getCreature(positionBeChosed);
-            if(creature.getPosList().contains(position)){
+        if (isMoving) {
+            Creature creature = Board.getInstance().getCreature(positionBeChosed);
+            if (creature.getPosList().contains(position)) {
                 creature.move(position);
-                positionBeChosed=null;
+                positionBeChosed = null;
             }
         }
     }
-    public void useAbility(){
-        if(positionBeChosed!=null){
-            if(Board.getInstance().getCreature(positionBeChosed) instanceof Calabash){
-                Calabash calabash=(Calabash)Board.getInstance().getCreature(positionBeChosed);
-                if(calabash.isSkillAvailable()){
+
+    public void useAbility() {
+        if (positionBeChosed != null) {
+            if (Board.getInstance().getCreature(positionBeChosed) instanceof Calabash) {
+                Calabash calabash = (Calabash) Board.getInstance().getCreature(positionBeChosed);
+                if (calabash.isSkillAvailable()) {
                     calabash.employ();
-                    positionBeChosed=null;
+                    positionBeChosed = null;
+                } else {
+                    this.alert("提示", "不能使用技能", 500);
                 }
-            }
-            if((Board.getInstance().getCreature(positionBeChosed) instanceof King)){
-                King king=(King)Board.getInstance().getCreature(positionBeChosed);
-                if(king.isSkillAvailable()){
+            } else if ((Board.getInstance().getCreature(positionBeChosed) instanceof King)) {
+                King king = (King) Board.getInstance().getCreature(positionBeChosed);
+                if (king.isSkillAvailable()) {
                     king.employ();
-                    positionBeChosed=null;
+                    positionBeChosed = null;
+                } else {
+                    this.alert("提示", "不能使用技能", 500);
                 }
+            } else {
+                this.alert("提示", "该单位无技能", 500);
             }
+        } else {
+            this.alert("提示", "未选择单位", 500);
         }
     }
+
     public int displayPickFrame(String guiName, String[] choices, int width, int height) {
         this.pickGui = new PickFrame(guiName, choices, width, height);
         this.pickGui.go();

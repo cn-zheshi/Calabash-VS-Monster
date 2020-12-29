@@ -68,6 +68,12 @@ public class MainGUI {
         frame.getContentPane().add(useAbilityButton);
         panel.setLayout(new GridLayout(10, 10));
         panel.setSize(600, 600);
+        useAbilityButton.addActionListener(new UseAbilityButton());
+        useAbilityButton.setSize(120, 40);
+        useAbilityButton.setLocation(640, 300);
+        moveButton.addActionListener(new MoveButton());
+        moveButton.setSize(120, 40);
+        moveButton.setLocation(640, 100);
         turnEndButton.addActionListener(e -> {
             Controller controller = Controller.getInstance();
             controller.setMyTurn(false);
@@ -179,7 +185,9 @@ public class MainGUI {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Controller.getInstance().setIsMoving(true);
+            if(Controller.getInstance().isMyTurn()){
+                Controller.getInstance().useAbility();
+            }
         }
 
     }
