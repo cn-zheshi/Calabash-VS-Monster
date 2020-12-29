@@ -124,7 +124,7 @@ public class Controller {
         // TODO: 添加普通妖精
 
         this.board.set(kings, creatures);
-        this.matchingGUI.getFrame().setVisible(true);
+        //this.matchingGUI.getFrame().setVisible(true);
     }
 
     public void go() {
