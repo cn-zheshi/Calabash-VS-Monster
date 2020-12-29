@@ -1,6 +1,8 @@
 package java20.core.view;
 
 import java20.core.model.battlefield.Board;
+import java20.core.model.battlefield.Position;
+import java20.client.Client;
 import java20.core.Controller;
 import java20.util.Race;
 import lombok.Data;
@@ -10,7 +12,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-
 
 @Data
 public class MainGUI {
@@ -84,7 +85,7 @@ public class MainGUI {
                 panel.add(buttons[x][y]);
             }
         }
-//        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        // frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.repaint();
         frame.setVisible(true);
@@ -150,19 +151,11 @@ public class MainGUI {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            // TODO: 处理按键
             if (Controller.getInstance().isMyTurn()) {
                 for (int y = 0; y < 10; ++y) {
                     for (int x = 0; x < 10; ++x) {
                         if (e.getSource().equals(buttons[x][y])) {
-                            if (Board.getInstance().isAlly(x, y, Controller.getInstance().getSide())) {
-                                JDialog dialog = new JDialog(frame, "问题" + (y * 10 + x + 1), true);
-                                dialog.setSize(200, 100);
-                                JTextField text = new JTextField("some questions");
-                                text.setEditable(false);
-                                dialog.getContentPane().add(text);
-                                dialog.setVisible(true);
-                            }
+                            Controller.getInstance().positionBeChosed(new Position(x, y));
                         }
                     }
                 }
@@ -174,7 +167,8 @@ public class MainGUI {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (Controller.getInstance().isMyTurn() && !Controller.getInstance().isMoving()) {
+            if (Controller.getInstance().isMyTurn() && !Controller.getInstance().isMoving()
+                    && !Controller.getInstance().isMoved()) {
                 Controller.getInstance().setIsMoving(true);
             }
         }

@@ -27,6 +27,7 @@ public class Controller {
     private MatchingGUI matchingGUI;
     private PickFrame pickGui;
     private Board board;
+    private Position positionBeChosed;
 
     private Race side;
     private boolean lose;
@@ -62,6 +63,7 @@ public class Controller {
         this.lose = false;
         this.isMoving = false;
         this.isMoved = false;
+        this.positionBeChosed = null;
 
         ArrayList<King> kings = new ArrayList<>();
         ArrayList<Creature> creatures = new ArrayList<>();
@@ -148,8 +150,36 @@ public class Controller {
 
     public void positionBeChosed(Position position) {
         // TODO: 处理按键
+        if(positionBeChosed==null){
+            positionBeChosed=position;
+            return;
+        }
+        if(isMoving){
+            Creature creature=Board.getInstance().getCreature(positionBeChosed);
+            if(creature.getPosList().contains(position)){
+                creature.move(position);
+                positionBeChosed=null;
+            }
+        }
     }
-
+    public void useAbility(){
+        if(positionBeChosed!=null){
+            if(Board.getInstance().getCreature(positionBeChosed) instanceof Calabash){
+                Calabash calabash=(Calabash)Board.getInstance().getCreature(positionBeChosed);
+                if(calabash.isSkillAvailable()){
+                    calabash.employ();
+                    positionBeChosed=null;
+                }
+            }
+            if((Board.getInstance().getCreature(positionBeChosed) instanceof King)){
+                King king=(King)Board.getInstance().getCreature(positionBeChosed);
+                if(king.isSkillAvailable()){
+                    king.employ();
+                    positionBeChosed=null;
+                }
+            }
+        }
+    }
     public int displayPickFrame(String guiName, String[] choices, int width, int height) {
         this.pickGui = new PickFrame(guiName, choices, width, height);
         this.pickGui.go();

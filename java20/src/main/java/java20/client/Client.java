@@ -70,12 +70,12 @@ public class Client {
                         lose = true;
                         break;
                     }
-                    String[] arr = message.split(",");
                     FileWriter fWriter = new FileWriter(new File("record.txt"));
-                    for (int i = 0; i < arr.length - 1; ++i) {
-                        fWriter.write(arr[i] + "\n");
-                    }
+                    fWriter.write(message);
                     // TODO: 解析并映射至本方屏幕
+                    if (message.equals("Turn End")) {
+                        Controller.getInstance().setMyTurn(true);
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
