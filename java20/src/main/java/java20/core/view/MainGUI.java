@@ -75,11 +75,7 @@ public class MainGUI {
         moveButton.addActionListener(new MoveButton());
         moveButton.setSize(120, 40);
         moveButton.setLocation(640, 100);
-        turnEndButton.addActionListener(e -> {
-            Controller controller = Controller.getInstance();
-            controller.setMyTurn(false);
-            controller.updateTurn();
-        });
+        turnEndButton.addActionListener(new TurnEndButton());
         turnEndButton.setSize(120, 40);
         turnEndButton.setLocation(640, 500);
         frame.setSize(800, 635);
@@ -153,11 +149,11 @@ public class MainGUI {
                 }
             }
         }
-        if(Controller.getInstance().isMoving()){
-            Position p=Controller.getInstance().getPositionBeChosed();
-            Creature creature=Board.getInstance().getCreature(p);
-            for(int i=0;i<creature.getPosList().size();++i){
-                Position position=creature.getPosList().get(i);
+        if (Controller.getInstance().isMoving()) {
+            Position p = Controller.getInstance().getPositionBeChosed();
+            Creature creature = Board.getInstance().getCreature(p);
+            for (int i = 0; i < creature.getPosList().size(); ++i) {
+                Position position = creature.getPosList().get(i);
                 buttons[position.getX()][position.getY()].setBackground(Color.GREEN);
             }
         }
@@ -195,8 +191,21 @@ public class MainGUI {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(Controller.getInstance().isMyTurn()){
+            if (Controller.getInstance().isMyTurn()) {
                 Controller.getInstance().useAbility();
+            }
+        }
+
+    }
+
+    public class TurnEndButton implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (Controller.getInstance().isMyTurn()) {
+                Controller controller = Controller.getInstance();
+                controller.setMyTurn(false);
+                controller.updateTurn();
             }
         }
 
