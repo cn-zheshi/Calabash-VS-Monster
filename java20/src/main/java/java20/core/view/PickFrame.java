@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  * @author hwd
@@ -26,7 +25,7 @@ public class PickFrame extends JFrame {
 
     public void setGui(int width, int height) {
         this.setBackground(Color.BLACK);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setBounds(550, 275, width, height);
         this.getContentPane().add(BorderLayout.CENTER, this.pickPanel);
         this.setResizable(false);

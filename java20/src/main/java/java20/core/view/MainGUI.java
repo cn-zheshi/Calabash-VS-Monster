@@ -1,7 +1,7 @@
 package java20.core.view;
 
-import java20.core.model.battlefield.Board;
 import java20.core.Controller;
+import java20.core.model.battlefield.Board;
 import java20.util.Race;
 import lombok.Data;
 
@@ -61,8 +61,10 @@ public class MainGUI {
         frame.setTitle("Calabash VS Monster");
         frame.getContentPane().add(panel);
         frame.getContentPane().add(turnEndButton);
+
         panel.setLayout(new GridLayout(10, 10));
         panel.setSize(600, 600);
+
         turnEndButton.addActionListener(e -> {
             Controller controller = Controller.getInstance();
             controller.setMyTurn(false);
@@ -70,6 +72,8 @@ public class MainGUI {
         });
         turnEndButton.setSize(120, 40);
         turnEndButton.setLocation(640, 500);
+
+        
         frame.setSize(800, 635);
         frame.setLayout(null);
         frame.setResizable(false);

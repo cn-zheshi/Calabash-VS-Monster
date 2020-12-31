@@ -16,18 +16,18 @@ import java.util.ArrayList;
 @Data
 public abstract class Creature {
 
-    private String name;
-    private Race race;
-    private Position position;
-    private Status status;
-    private MoveStrategy moveStrategy;
+    protected String name;
+    protected Race race;
+    protected Position position;
+    protected Status status;
+    protected MoveStrategy moveStrategy;
     /*
      * statusTime表示状态持续时间
      * -2为死亡 0表示别的状态时间结束需要返回到alive状态
      * alive状态下这个数值为0
      * 时间永远是2的倍数 因为两个turn才是一个回合
      */
-    private int statusTime;
+    protected int statusTime;
 
     protected Creature(String name,
                        Race race,
