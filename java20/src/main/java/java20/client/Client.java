@@ -70,7 +70,7 @@ public class Client {
                         lose = true;
                         break;
                     }
-                    FileWriter fWriter = new FileWriter(new File("record.txt"));
+                    FileWriter fWriter = new FileWriter(new File("record.txt"), true);
                     fWriter.write(message);
                     // TODO: 解析并映射至本方屏幕
                     if (message.equals("Turn End")) {
