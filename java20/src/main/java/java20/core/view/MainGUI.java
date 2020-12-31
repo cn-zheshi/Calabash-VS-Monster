@@ -159,6 +159,17 @@ public class MainGUI {
         }
     }
 
+    public void disable() {
+        for (int y = 0; y < 10; ++y) {
+            for (int x = 0; x < 10; ++x) {
+                buttons[x][y].setEnabled(false);
+            }
+        }
+        useAbilityButton.setEnabled(false);
+        moveButton.setEnabled(false);
+        turnEndButton.setEnabled(false);
+    }
+
     public class ClickHandler implements ActionListener {
 
         @Override
