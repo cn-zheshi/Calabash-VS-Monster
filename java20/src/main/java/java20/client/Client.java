@@ -15,10 +15,16 @@ public class Client {
     PrintWriter writer;
     Socket sock;
     boolean lose;
+    FileWriter fWriter;
     private static Client client = new Client();
 
     private Client() {
         this.controller = Controller.getInstance();
+        try {
+            fWriter = new FileWriter(new File("record.txt"), true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         lose = false;
     }
 
@@ -52,6 +58,11 @@ public class Client {
     }
 
     public void sendMessage(String message) {
+        try {
+            fWriter.write(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         writer.println(message);
         writer.flush();
     }
@@ -70,12 +81,11 @@ public class Client {
                         lose = true;
                         break;
                     }
-                    String[] arr = message.split(",");
-                    FileWriter fWriter = new FileWriter(new File("record.txt"));
-                    for (int i = 0; i < arr.length - 1; ++i) {
-                        fWriter.write(arr[i] + "\n");
-                    }
+                    fWriter.write(message);
                     // TODO: 解析并映射至本方屏幕
+                    if (message.equals("Turn End")) {
+                        Controller.getInstance().setMyTurn(true);
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -87,8 +97,11 @@ public class Client {
 
         public void run() {
             String message;
-            Thread thread = new Thread(() -> {
-                Controller.getInstance().getMatchingGUI().go();
+            Thread thread = new Thread(new Runnable(){
+                @Override
+                public void run(){
+                    Controller.getInstance().getMatchingGUI().go();
+                }
             });
             thread.start();
             try {

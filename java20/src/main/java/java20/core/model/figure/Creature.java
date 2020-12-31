@@ -1,5 +1,6 @@
 package java20.core.model.figure;
 
+import java20.core.Controller;
 import java20.core.model.battlefield.Board;
 import java20.core.model.battlefield.Position;
 import java20.core.model.figure.movestrategy.MoveStrategy;
@@ -22,17 +23,12 @@ public abstract class Creature {
     protected Status status;
     protected MoveStrategy moveStrategy;
     /*
-     * statusTime表示状态持续时间
-     * -2为死亡 0表示别的状态时间结束需要返回到alive状态
-     * alive状态下这个数值为0
-     * 时间永远是2的倍数 因为两个turn才是一个回合
+     * statusTime表示状态持续时间 -2为死亡 0表示别的状态时间结束需要返回到alive状态 alive状态下这个数值为0 时间永远是2的倍数
+     * 因为两个turn才是一个回合
      */
     protected int statusTime;
 
-    protected Creature(String name,
-                       Race race,
-                       Position position,
-                       MoveStrategy moveStrategy) {
+    protected Creature(String name, Race race, Position position, MoveStrategy moveStrategy) {
         this.name = name;
         this.race = race;
         this.position = position;
@@ -47,13 +43,15 @@ public abstract class Creature {
     }
 
     public void resurge() {
-        if (!this.status.equals(Status.DEAD)) return;
+        if (!this.status.equals(Status.DEAD))
+            return;
         this.statusTime = 0;
         this.status = Status.ALIVE;
     }
 
     public void dead() {
-        if (this.status.equals(Status.INVINCIBLE)) return;
+        if (this.status.equals(Status.INVINCIBLE))
+            return;
         this.statusTime = -2;
         this.status = Status.DEAD;
     }
@@ -80,9 +78,11 @@ public abstract class Creature {
 
     public void updateStatus() {
         Board board = Board.getInstance();
-        if (this.status.equals(Status.ALIVE) || this.status.equals(Status.DEAD)) return;
+        if (this.status.equals(Status.ALIVE) || this.status.equals(Status.DEAD))
+            return;
         if (this.statusTime == 0) {
-            if (this.isTraitorous()) board.setVal(this.position, this.race);
+            if (this.isTraitorous())
+                board.setVal(this.position, this.race);
             this.status = Status.ALIVE;
             return;
         }
@@ -111,6 +111,16 @@ public abstract class Creature {
 
     public boolean isTraitorous() {
         return this.status.equals(Status.TRAITOROUS);
+    }
+
+    public void move(int x, int y) {
+        move(new Position(x, y));
+    }
+
+    public void move(Position position) {
+        Board.getInstance().moveTo(this.position, position, this.race);
+        Controller.getInstance().setIsMoving(false);
+        Controller.getInstance().setIsMoved(true);
     }
 
     /**

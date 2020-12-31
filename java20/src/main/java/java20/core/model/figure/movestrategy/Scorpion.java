@@ -8,12 +8,13 @@ import java.util.ArrayList;
 
 /**
  * @author hwd
- * @description 前后左右各1格，左前1格右前1格
+ * @description 周围8格
  * @date 2020-12-26
  **/
-public class SlashAndLineA implements MoveStrategy {
+public class Scorpion implements MoveStrategy {
 
-    private static int[][] posAround = new int[][] { { 1, 0 }, { 0, 1 }, { -1, 0 }, { 0, -1 }, { 1, -1 }, { 1, 1 } };
+    private static int[][] posAround = new int[][] { { -1, -1 }, { -1, 0 }, { -1, 1 }, { 0, -1 }, { 0, 1 }, { 1, -1 },
+            { 1, 0 }, { 1, 1 } };
 
     @Override
     public ArrayList<Position> availablePos(Position position) {
@@ -25,7 +26,7 @@ public class SlashAndLineA implements MoveStrategy {
             Board board = Board.getInstance();
             if (!cur.isValid(board.getWidth(), board.getHeight()))
                 continue;
-            if (board.isVoid(cur) || board.isEnemy(cur, Race.Calabash))
+            if (board.isVoid(cur) || board.isEnemy(cur, Race.Scorpion))
                 positions.add(cur);
         }
         return positions;

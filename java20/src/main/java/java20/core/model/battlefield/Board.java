@@ -1,5 +1,6 @@
 package java20.core.model.battlefield;
 
+import java20.client.Client;
 import java20.core.model.figure.Creature;
 import java20.core.model.figure.King;
 import java20.util.Race;
@@ -27,7 +28,6 @@ public class Board {
         return board;
     }
 
-
     public void set(ArrayList<King> kings, ArrayList<Creature> creatures) {
         this.kings = kings;
         this.creatures = creatures;
@@ -54,8 +54,14 @@ public class Board {
      * @param race
      */
     public void moveTo(int x0, int y0, int x1, int y1, Race race) {
-        setVal(x0, y0, null);
-        setVal(x1, y1, race);
+        if (isEnemy(x1, y1, race)) {
+            getCreature(x1, y1).dead();
+        }
+        if (getCreature(x1, y1) == null || getCreature(x1, y1).isDead()) {
+            setVal(x0, y0, null);
+            setVal(x1, y1, race);
+            Client.getInstance().sendMessage("Move " + x0 + "," + y0 + " " + x1 + "," + y1);
+        }
     }
 
     public void setVal(Position p, Race race) {
@@ -107,8 +113,7 @@ public class Board {
         if (x < 0 || y < 0 || x >= width || y >= height || grid[x][y] == null) {
             return false;
         }
-        return race.isCalabash() || race.isGrandpa()
-                ? grid[x][y].isMonster() || grid[x][y].isKingMonster()
+        return race.isCalabash() || race.isGrandpa() ? grid[x][y].isMonster() || grid[x][y].isKingMonster()
                 : grid[x][y].isCalabash() || grid[x][y].isGrandpa();
     }
 
@@ -120,8 +125,7 @@ public class Board {
         if (x < 0 || y < 0 || x >= width || y >= height || grid[x][y] == null) {
             return false;
         }
-        return race.isCalabash() || race.isGrandpa()
-                ? grid[x][y].isCalabash() || grid[x][y].isGrandpa()
+        return race.isCalabash() || race.isGrandpa() ? grid[x][y].isCalabash() || grid[x][y].isGrandpa()
                 : grid[x][y].isMonster() || grid[x][y].isKingMonster();
     }
 
@@ -140,14 +144,14 @@ public class Board {
         int len = this.creatures.size();
         for (int i = 0; i < len; ++i) {
             Creature cur = this.creatures.get(i);
-            if (cur.getPosition().equals(p)) {
+            if (cur.getPosition().equals(p) && !cur.isDead()) {
                 return cur;
             }
         }
         len = this.kings.size();
         for (int i = 0; i < len; ++i) {
             King cur = this.kings.get(i);
-            if (cur.getPosition().equals(p)) {
+            if (cur.getPosition().equals(p) && !cur.isDead()) {
                 return cur;
             }
         }

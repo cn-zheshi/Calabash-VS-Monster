@@ -1,5 +1,6 @@
 package java20.core.model.figure;
 
+import java20.client.Client;
 import java20.core.model.battlefield.Position;
 import java20.core.model.figure.movestrategy.MoveStrategy;
 import java20.core.model.figure.skill.Skill;
@@ -22,9 +23,10 @@ public class Calabash extends Creature {
 
     public void employ() {
         this.skill.employ(this);
+        Client.getInstance().sendMessage("UseAbility " + this.getPosition().toString());
     }
 
-    public boolean isAvailable() {
+    public boolean isSkillAvailable() {
         return this.skill.isAvailable();
     }
 

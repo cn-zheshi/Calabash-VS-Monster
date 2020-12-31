@@ -74,8 +74,7 @@ public class PickFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-        PickFrame test = new PickFrame("选择",
-                new String[]{"大娃", "二娃", "三娃", "四娃", "五娃"}, 210, 115);
+        PickFrame test = new PickFrame("选择", new String[] { "大娃", "二娃", "三娃", "四娃", "五娃" }, 210, 115);
         test.go();
         System.out.println(test.getResult());
     }

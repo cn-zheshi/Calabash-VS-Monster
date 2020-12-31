@@ -13,20 +13,20 @@ import java.util.ArrayList;
  **/
 public class SlashA implements MoveStrategy {
 
-    private static int[][] posAround = new int[][]{
-            {2, -2}, {-2, -2}, {-2, 2}, {2, 2}};
+    private static int[][] posAround = new int[][] { { 2, -2 }, { -2, -2 }, { -2, 2 }, { 2, 2 } };
 
     @Override
     public ArrayList<Position> availablePos(Position position) {
         int x = position.getX();
         int y = position.getY();
-        // TODO Auto-generated method stub
         ArrayList<Position> positions = new ArrayList<>();
         for (int i = 0; i < 8; ++i) {
             Position cur = new Position(x + posAround[i][0], y + posAround[i][1]);
             Board board = Board.getInstance();
-            if (!cur.isValid(board.getWidth(), board.getHeight())) continue;
-            if (board.isVoid(cur) || board.isEnemy(cur, Race.Demon)) positions.add(cur);
+            if (!cur.isValid(board.getWidth(), board.getHeight()))
+                continue;
+            if (board.isVoid(cur) || board.isEnemy(cur, Race.Demon))
+                positions.add(cur);
         }
         return positions;
     }

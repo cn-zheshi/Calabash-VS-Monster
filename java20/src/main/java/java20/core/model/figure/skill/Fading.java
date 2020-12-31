@@ -1,5 +1,6 @@
 package java20.core.model.figure.skill;
 
+import java20.client.Client;
 import java20.core.Controller;
 import java20.core.model.battlefield.Board;
 import java20.core.model.battlefield.Position;
@@ -12,7 +13,6 @@ import java20.core.model.figure.Creature;
  * @date 2020-12-26
  **/
 public class Fading extends Skill {
-
 
     /**
      * @param cd        如果为-2表示没有技能 -1表示随时可用且只能用一次的技能 如变身
@@ -27,16 +27,17 @@ public class Fading extends Skill {
     public void employ(Creature master) {
         Controller controller = Controller.getInstance();
         Board board = controller.getBoard();
-        int result = controller.displayPickFrame("选择葫芦娃",
-                new String[]{"大娃", "二娃", "三娃", "四娃", "五娃", "六娃", "七娃"},
+        int result = controller.displayPickFrame("选择葫芦娃", new String[] { "大娃", "二娃", "三娃", "四娃", "五娃", "六娃", "七娃" },
                 300, 100);
         Calabash target = controller.getCalabash(result);
         target.seal(1);
         Position cur = target.getPosition();
         Position destination = new Position(cur);
-        if (destination.getX() != 0) destination.setX(destination.getX() - 1);
+        if (destination.getY() != 0)
+            destination.setY(destination.getY() - 1);
         board.moveTo(cur, destination, target.getRace());
         target.setPosition(destination);
         this.leftTime = this.cd;
+        Client.getInstance().sendMessage("Seal-Calabash " + result);
     }
 }
