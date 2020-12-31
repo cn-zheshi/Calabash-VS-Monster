@@ -12,12 +12,17 @@ import java20.core.model.figure.skill.*;
 import java20.core.view.MainGUI;
 import java20.core.view.MatchingGUI;
 import java20.core.view.PickFrame;
+import java20.util.GameType;
 import java20.util.Race;
 import lombok.Data;
 
-import javax.swing.*;
+import javax.swing.JDialog;
+import javax.swing.JTextField;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 @Data
@@ -28,6 +33,7 @@ public class Controller {
     private PickFrame pickGui;
     private Board board;
     private Position positionBeChosed;
+    private GameType gameType;
 
     private Race side;
     private boolean lose;
@@ -80,7 +86,7 @@ public class Controller {
 
         this.board.setVal(snakePosition, Race.Snake);
         Position scorpionPosition = new Position(4, 9);
-        King scorpion = new King("蝎子精", Race.Scorpion, scorpionPosition, new Periphery(), new Fading(4, false, true));
+        King scorpion = new King("蝎子精", Race.Scorpion, scorpionPosition, new Scorpion(), new Fading(4, false, true));
         kings.add(scorpion);
 
         this.board.setVal(scorpionPosition, Race.Scorpion);
@@ -124,27 +130,39 @@ public class Controller {
         // TODO: 添加普通妖精
 
         this.board.set(kings, creatures);
-        //this.matchingGUI.getFrame().setVisible(true);
+        // this.matchingGUI.getFrame().setVisible(true);
     }
 
     public void go() {
         // TODO:游戏主逻辑
-        Client.getInstance().go();
-        this.mainGUI.go();
-        this.isMyTurn = (this.side == Race.Calabash);
-        this.alert("匹配成功", "你的阵营:" + (this.side == Race.Calabash ? "Calabash" : "Monsters"), 500);
-        while (!this.lose && !Client.getInstance().isLose()) {
+        if (gameType == GameType.Playing) {
             try {
-                Thread.sleep(16);
-            } catch (Exception e) {
-                e.printStackTrace();
+                FileWriter fWriter = new FileWriter(new File("record.txt"));
+                fWriter.close();
+            } catch (IOException e1) {
+                e1.printStackTrace();
             }
-            this.mainGUI.repaint();
+            Client.getInstance().go();
+            this.mainGUI.go();
+            this.isMyTurn = (this.side == Race.Calabash);
+            this.alert("匹配成功", "你的阵营:" + (this.side == Race.Calabash ? "Calabash" : "Monsters"), 500);
+            while (!this.lose && !Client.getInstance().isLose()) {
+                try {
+                    Thread.sleep(16);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                this.mainGUI.repaint();
+            }
+            if (this.lose) {
+                this.alert("你输了", "You Lose", 250);
+            } else {
+                this.alert("你赢了", "You Win", 250);
+            }
+            this.mainGUI.disable();
         }
-        if (this.lose) {
-            this.alert("你输了", "You Lose", 250);
-        } else {
-            this.alert("你赢了", "You Win", 250);
+        if(gameType==GameType.Looking){
+             
         }
     }
 
