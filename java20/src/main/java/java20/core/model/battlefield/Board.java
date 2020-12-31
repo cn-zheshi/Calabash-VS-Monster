@@ -5,6 +5,9 @@ import java20.core.model.figure.King;
 import java20.util.Race;
 import lombok.Data;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 @Data
@@ -56,9 +59,15 @@ public class Board {
         if (isEnemy(x1, y1, race)) {
             getCreature(x1, y1).dead();
         }
-        if (getCreature(x1, y1)==null||getCreature(x1, y1).isDead()) {
+        if (getCreature(x1, y1) == null || getCreature(x1, y1).isDead()) {
             setVal(x0, y0, null);
             setVal(x1, y1, race);
+            try {
+                FileWriter fWriter = new FileWriter(new File("record.txt"), true);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 
