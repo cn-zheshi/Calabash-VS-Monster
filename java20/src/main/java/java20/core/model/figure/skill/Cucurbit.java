@@ -1,6 +1,6 @@
 package java20.core.model.figure.skill;
 
-
+import java20.client.Client;
 import java20.core.Controller;
 import java20.core.model.battlefield.Board;
 import java20.core.model.figure.Creature;
@@ -33,12 +33,11 @@ public class Cucurbit extends Skill {
          */
         int result = -1;
         if (race.isCalabash() || race.isGrandpa()) {
-            result = controller.displayPickFrame("选择封印对象",
-                    new String[]{"蛇精", "蝎子精"},
-                    300, 100);
+            result = controller.displayPickFrame("选择封印对象", new String[] { "蛇精", "蝎子精" }, 300, 100);
         }
         King target = controller.getKing(result + 1);
         target.seal(1);
         this.leftTime = this.cd;
+        Client.getInstance().sendMessage("Seal-King " + result);
     }
 }

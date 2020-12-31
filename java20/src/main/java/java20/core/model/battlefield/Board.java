@@ -60,7 +60,7 @@ public class Board {
         if (getCreature(x1, y1) == null || getCreature(x1, y1).isDead()) {
             setVal(x0, y0, null);
             setVal(x1, y1, race);
-            Client.getInstance().sendMessage("Move "+x0+","+y0+" "+x1+","+y1);
+            Client.getInstance().sendMessage("Move " + x0 + "," + y0 + " " + x1 + "," + y1);
         }
     }
 

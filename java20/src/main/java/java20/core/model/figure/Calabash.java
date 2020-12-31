@@ -23,7 +23,7 @@ public class Calabash extends Creature {
 
     public void employ() {
         this.skill.employ(this);
-        Client.getInstance().sendMessage("UseAbility"+this.getPosition().toString());
+        Client.getInstance().sendMessage("UseAbility " + this.getPosition().toString());
     }
 
     public boolean isSkillAvailable() {
