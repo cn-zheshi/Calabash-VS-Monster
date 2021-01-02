@@ -34,7 +34,7 @@ public class Goblin extends Creature {
         }
     }
 
-    public boolean isAvailable() {
+    public boolean isSkillAvailable() {
         return this.skill.isAvailable();
     }
 }
