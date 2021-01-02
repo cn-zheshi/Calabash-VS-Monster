@@ -78,12 +78,12 @@ public class Client {
             System.out.println("reading");
             try {
                 while (((message = reader.readLine()) != null) && !lose) {
+                    fWriter.write(message + "\n");
+                    fWriter.flush();
                     if (message.equals("Lose")) {
                         lose = true;
                         break;
                     }
-                    fWriter.write(message + "\n");
-                    fWriter.flush();
                     // TODO: 解析并映射至本方屏幕
                     Controller.getInstance().processInstruction(message);
                 }

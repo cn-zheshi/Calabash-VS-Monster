@@ -9,18 +9,23 @@ import java20.core.model.figure.Goblin;
 import java20.core.model.figure.King;
 import java20.core.model.figure.movestrategy.*;
 import java20.core.model.figure.skill.*;
+import java20.core.view.LookingGUI;
 import java20.core.view.MainGUI;
 import java20.core.view.MatchingGUI;
 import java20.core.view.PickDialog;
+import java20.core.view.SaveDialog;
 import java20.util.GameType;
 import java20.util.Race;
 import lombok.Data;
 
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,6 +34,7 @@ import java.util.ArrayList;
 public class Controller {
 
     private MainGUI mainGUI;
+    private LookingGUI lookingGUI;
     private MatchingGUI matchingGUI;
     private PickDialog pickGui;
     private Board board;
@@ -50,6 +56,7 @@ public class Controller {
 
     private Controller() {
         this.mainGUI = MainGUI.getInstance();
+        this.lookingGUI = LookingGUI.getInstance();
         this.board = Board.getInstance();
         this.matchingGUI = new MatchingGUI();
         this.pickGui = null;
@@ -153,16 +160,39 @@ public class Controller {
                     e.printStackTrace();
                 }
                 this.mainGUI.repaint();
+                if ((getKing(0).isDead() && this.side == Race.Calabash)
+                        || (getKing(1).isDead() && getKing(2).isDead() && this.side == Race.Monster)) {
+                    this.lose = true;
+                    Client.getInstance().sendMessage("Lose");
+                }
             }
             if (this.lose) {
                 this.alert("你输了", "You Lose", 250);
             } else {
                 this.alert("你赢了", "You Win", 250);
             }
+            SaveDialog saveDialog = new SaveDialog();
+            saveDialog.go();
             this.mainGUI.disable();
         }
         if (gameType == GameType.Looking) {
-
+            this.lookingGUI.go();
+            try {
+                FileReader fReader = new FileReader(new File("saved.txt"));
+                BufferedReader reader = new BufferedReader(fReader);
+                String str = reader.readLine();
+                while (str != null) {
+                    if (!str.contains("UseAbility")) {
+                        Thread.sleep(500);
+                    }
+                    processInstruction(str);
+                    str = reader.readLine();
+                    this.lookingGUI.repaint();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            this.lookingGUI.disable();
         }
     }
 
@@ -244,6 +274,10 @@ public class Controller {
         if (instruction == null) {
             return;
         }
+        if (instruction.contains("Lose")) {
+            this.alert("end", "播放结束", 300);
+            return;
+        }
         String[] str = instruction.split("\\s+");
         if (str.length == 0) {
             return;
@@ -277,6 +311,7 @@ public class Controller {
             int x = Integer.parseInt(str[2].split(",")[0]);
             int y = Integer.parseInt(str[2].split(",")[1]);
             Position position = new Position(x, y);
+            this.board.setVal(position, calabash.getRace());
             calabash.setPosition(position);
             return;
         }
@@ -338,7 +373,8 @@ public class Controller {
     }
 
     private void alert(String title, String content, int width) {
-        JDialog dialog = new JDialog(this.mainGUI.getFrame(), title, true);
+        JFrame frame = this.gameType == GameType.Playing ? this.mainGUI.getFrame() : this.lookingGUI.getFrame();
+        JDialog dialog = new JDialog(frame, title, true);
         dialog.setSize(width, 100);
         dialog.setLocationRelativeTo(null);
         JTextField text = new JTextField(content);
