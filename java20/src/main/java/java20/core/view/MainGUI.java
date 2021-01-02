@@ -53,8 +53,19 @@ public class MainGUI {
         panel = new JPanel();
         f = new File(this.getClass().getResource("/").getPath());
         // TODO: 加载图片资源
-        // background = new ImageIcon(f.getPath() + "/background.png");
-        // first = new ImageIcon(f.getPath() + "/first.png");
+        background = new ImageIcon(f.getPath() + "/background.png");
+        first = new ImageIcon(f.getPath() + "/first.png");
+        second = new ImageIcon(f.getPath() + "/second.png");
+        third = new ImageIcon(f.getPath() + "/third.png");
+        forth = new ImageIcon(f.getPath() + "/forth.png");
+        fifth = new ImageIcon(f.getPath() + "/fifth.png");
+        sixth = new ImageIcon(f.getPath() + "/sixth.png");
+        seventh = new ImageIcon(f.getPath() + "/seventh.png");
+        grandpa = new ImageIcon(f.getPath() + "/grandpa.png");
+        snake = new ImageIcon(f.getPath() + "/snake.png");
+        scorpion = new ImageIcon(f.getPath() + "/scorpion.png");
+        monster = new ImageIcon(f.getPath() + "/monster.png");
+        strongerMonster = new ImageIcon(f.getPath() + "/strongerMonster.png");
         setGui();
     }
 
