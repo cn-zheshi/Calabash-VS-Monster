@@ -144,6 +144,10 @@ public class MainGUI {
                     buttons[x][y].setIcon(monster);
                     continue;
                 }
+                if (kind == Race.Demon) {
+                    buttons[x][y].setIcon(strongerMonster);
+                    continue;
+                }
                 if (kind == null) {
                     buttons[x][y].setIcon(background);
                 }
