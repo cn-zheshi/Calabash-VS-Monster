@@ -40,7 +40,7 @@ public class Cucurbit extends Skill {
         target.seal(1);
         this.leftTime = this.cd;
         if (Controller.getInstance().getGameType() == GameType.Playing && Controller.getInstance().isMyTurn()) {
-            Client.getInstance().sendMessage("Seal-King " + result);
+            Client.getInstance().sendMessage("Seal " + target.getPosition().toString());
         }
     }
 }

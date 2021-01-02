@@ -14,8 +14,7 @@ import java.util.ArrayList;
  **/
 public class ShockWave extends Skill {
 
-    private static int[][] posAround = new int[][]{
-            {2, 0}, {-2, 0}, {0, 2}, {0, -2}};
+    private static int[][] posAround = new int[][] { { 2, 0 }, { -2, 0 }, { 0, 2 }, { 0, -2 } };
 
     /**
      * @param cd        如果为-2表示没有技能 -1表示随时可用且只能用一次的技能 如变身
@@ -33,9 +32,10 @@ public class ShockWave extends Skill {
         Controller controller = Controller.getInstance();
         ArrayList<Position> available = new ArrayList<>();
         for (int i = 0; i < 4; ++i) {
-            Position tmp = new Position(cur.getX() + posAround[i][0],
-                    cur.getY() + posAround[i][1]);
-            if (board.isEnemy(tmp, master.getRace())) available.add(tmp);
+            Position tmp = new Position(cur.getX() + posAround[i][0], cur.getY() + posAround[i][1]);
+            if (board.isEnemy(tmp, master.getRace())) {
+                available.add(tmp);
+            }
         }
         for (Position position : available) {
             Creature creature = board.getCreature(position);

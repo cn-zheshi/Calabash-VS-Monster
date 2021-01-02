@@ -14,7 +14,6 @@ import java20.util.Race;
  **/
 public class Seduction extends Skill {
 
-
     /**
      * @param cd        如果为-2表示没有技能 -1表示随时可用且只能用一次的技能 如变身
      * @param onlyOnce  只能用一次
@@ -29,8 +28,7 @@ public class Seduction extends Skill {
         Position cur = master.getPosition();
         Board board = Board.getInstance();
         Controller controller = Controller.getInstance();
-        int result = controller.displayPickFrame("选择魅惑对象",
-                new String[]{"大娃", "二娃", "三娃", "四娃", "五娃", "六娃", "七娃"},
+        int result = controller.displayPickFrame("选择魅惑对象", new String[] { "大娃", "二娃", "三娃", "四娃", "五娃", "六娃", "七娃" },
                 300, 100);
         Calabash target = controller.getCalabash(result);
         board.setVal(target.getPosition(), Race.Goblin);

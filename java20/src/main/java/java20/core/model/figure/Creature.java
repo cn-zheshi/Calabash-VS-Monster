@@ -119,8 +119,7 @@ public abstract class Creature {
 
     public void move(Position position) {
         Board.getInstance().moveTo(this.position, position, this.race);
-        Controller.getInstance().setIsMoving(false);
-        Controller.getInstance().setIsMoved(true);
+        this.position = position;
     }
 
     /**

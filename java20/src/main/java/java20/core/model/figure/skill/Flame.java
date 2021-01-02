@@ -1,6 +1,5 @@
 package java20.core.model.figure.skill;
 
-
 import java20.core.Controller;
 import java20.core.model.battlefield.Board;
 import java20.core.model.battlefield.Position;
@@ -13,7 +12,6 @@ import java20.util.Race;
  * @date 2020-12-26
  **/
 public class Flame extends Skill {
-
 
     /**
      * @param cd        如果为-2表示没有技能 -1表示随时可用且只能用一次的技能 如变身
@@ -33,8 +31,12 @@ public class Flame extends Skill {
         for (int i = 0; i < board.getWidth(); ++i) {
             int x = masterPos.getX() + ((race.isCalabash() || race.isGrandpa()) ? 1 : -1);
             Position targetPos = new Position(x, masterPos.getY());
-            if (!targetPos.isValid(board.getWidth(), board.getHeight())) break;
-            if (!board.isEnemy(targetPos, race)) continue;
+            if (!targetPos.isValid(board.getWidth(), board.getHeight())) {
+                break;
+            }
+            if (!board.isEnemy(targetPos, race)) {
+                continue;
+            }
             Creature target = board.getCreature(targetPos);
             target.dead();
             break;

@@ -39,8 +39,9 @@ public class Call extends Skill {
         ArrayList<Position> available = new ArrayList<>();
         for (int i = 0; i < 8; ++i) {
             Position tmp = new Position(cur.getX() + posAround[i][0], cur.getY() + posAround[i][1]);
-            if (board.isVoid(tmp))
+            if (board.isVoid(tmp)) {
                 available.add(tmp);
+            }
         }
         int rand = Rand.randNum(available.size());
         int result = controller.displayPickFrame("选择召唤对象", new String[] { "大娃", "二娃", "三娃", "四娃", "五娃", "六娃", "七娃" },

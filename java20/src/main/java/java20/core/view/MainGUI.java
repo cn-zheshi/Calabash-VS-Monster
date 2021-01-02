@@ -192,7 +192,7 @@ public class MainGUI {
         public void actionPerformed(ActionEvent e) {
             if (Controller.getInstance().isMyTurn() && !Controller.getInstance().isMoving()
                     && !Controller.getInstance().isMoved()) {
-                Controller.getInstance().setIsMoving(true);
+                Controller.getInstance().move();
             }
         }
 
@@ -217,6 +217,7 @@ public class MainGUI {
                 Controller controller = Controller.getInstance();
                 controller.setMyTurn(false);
                 controller.updateTurn();
+                Client.getInstance().sendMessage("Turn-End");
             }
         }
 
