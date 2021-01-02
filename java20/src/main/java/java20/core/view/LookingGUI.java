@@ -1,17 +1,11 @@
 package java20.core.view;
 
 import java20.core.model.battlefield.Board;
-import java20.core.model.battlefield.Position;
-import java20.core.model.figure.Creature;
-import java20.client.Client;
-import java20.core.Controller;
 import java20.util.Race;
 import lombok.Data;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 
 @Data
