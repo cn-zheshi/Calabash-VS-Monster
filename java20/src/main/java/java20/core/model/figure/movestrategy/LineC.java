@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @date 2020-12-26
  **/
 public class LineC implements MoveStrategy {
-    private static int[][] poses = new int[][] { { 0, 1 }, { 0, -1 }, { -1, 0 } };
+    private static int[][] poses = new int[][] { { 0, 1 }, { 1, 0 }, { -1, 0 } };
 
     @Override
     public ArrayList<Position> availablePos(Position position) {

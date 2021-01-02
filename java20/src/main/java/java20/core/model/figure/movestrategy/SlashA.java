@@ -20,7 +20,7 @@ public class SlashA implements MoveStrategy {
         int x = position.getX();
         int y = position.getY();
         ArrayList<Position> positions = new ArrayList<>();
-        for (int i = 0; i < 8; ++i) {
+        for (int i = 0; i < posAround.length; ++i) {
             Position cur = new Position(x + posAround[i][0], y + posAround[i][1]);
             Board board = Board.getInstance();
             if (!cur.isValid(board.getWidth(), board.getHeight()))

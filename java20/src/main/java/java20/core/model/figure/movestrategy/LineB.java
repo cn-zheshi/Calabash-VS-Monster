@@ -16,27 +16,27 @@ public class LineB implements MoveStrategy {
         int x = position.getX();
         int y = position.getY();
         ArrayList<Position> arr = new ArrayList<Position>();
-        if (Board.getInstance().isVoid(x + 2, y + 2)
-                || Board.getInstance().isEnemy(x + 2, y + 2, Race.Calabash)) {
-            Position cur = new Position(x + 2, y + 2);
+        if (Board.getInstance().isVoid(x + 2, y)
+                || Board.getInstance().isEnemy(x + 2, y, Race.Calabash)) {
+            Position cur = new Position(x + 2, y);
             if (cur.isValid(Board.getInstance().getWidth(), Board.getInstance().getHeight()))
                 arr.add(cur);
         }
-        if (Board.getInstance().isVoid(x + 2, y - 2)
-                || Board.getInstance().isEnemy(x + 2, y - 2, Race.Calabash)) {
-            Position cur = new Position(x + 2, y - 2);
+        if (Board.getInstance().isVoid(x - 2, y)
+                || Board.getInstance().isEnemy(x - 2, y, Race.Calabash)) {
+            Position cur = new Position(x - 2, y);
             if (cur.isValid(Board.getInstance().getWidth(), Board.getInstance().getHeight()))
                 arr.add(cur);
         }
-        if (Board.getInstance().isVoid(x - 2, y + 2)
-                || Board.getInstance().isEnemy(x - 2, y + 2, Race.Calabash)) {
-            Position cur = new Position(x - 2, y + 2);
+        if (Board.getInstance().isVoid(x, y + 2)
+                || Board.getInstance().isEnemy(x, y + 2, Race.Calabash)) {
+            Position cur = new Position(x, y + 2);
             if (cur.isValid(Board.getInstance().getWidth(), Board.getInstance().getHeight()))
                 arr.add(cur);
         }
-        if (Board.getInstance().isVoid(x - 2, y - 2)
-                || Board.getInstance().isEnemy(x - 2, y - 2, Race.Calabash)) {
-            Position cur = new Position(x - 2, y - 2);
+        if (Board.getInstance().isVoid(x, y - 2)
+                || Board.getInstance().isEnemy(x, y - 2, Race.Calabash)) {
+            Position cur = new Position(x, y - 2);
             if (cur.isValid(Board.getInstance().getWidth(), Board.getInstance().getHeight()))
                 arr.add(cur);
         }

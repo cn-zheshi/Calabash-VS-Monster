@@ -13,14 +13,14 @@ import java.util.ArrayList;
  **/
 public class SlashAndLineA implements MoveStrategy {
 
-    private static int[][] posAround = new int[][] { { 1, 0 }, { 0, 1 }, { -1, 0 }, { 0, -1 }, { 1, -1 }, { 1, 1 } };
+    private static int[][] posAround = new int[][] { { 1, 0 }, { 0, 1 }, { -1, 0 }, { 0, -1 }, { -1, 1 }, { 1, 1 } };
 
     @Override
     public ArrayList<Position> availablePos(Position position) {
         int x = position.getX();
         int y = position.getY();
         ArrayList<Position> positions = new ArrayList<>();
-        for (int i = 0; i < 8; ++i) {
+        for (int i = 0; i < posAround.length; ++i) {
             Position cur = new Position(x + posAround[i][0], y + posAround[i][1]);
             Board board = Board.getInstance();
             if (!cur.isValid(board.getWidth(), board.getHeight()))
