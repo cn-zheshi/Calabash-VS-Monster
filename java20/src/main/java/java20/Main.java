@@ -19,6 +19,7 @@ public class Main {
                 e.printStackTrace();
             }
         }
+        Controller.getInstance().set();
         Controller.getInstance().go();
     }
 }

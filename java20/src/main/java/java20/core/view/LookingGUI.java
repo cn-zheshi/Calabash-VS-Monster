@@ -1,5 +1,6 @@
 package java20.core.view;
 
+import java20.core.Controller;
 import java20.core.model.battlefield.Board;
 import java20.util.Race;
 import lombok.Data;
@@ -28,35 +29,38 @@ public class LookingGUI {
     private ImageIcon snake;
     private ImageIcon scorpion;
 
-    private static LookingGUI lookingGUI=new LookingGUI();
+    private static LookingGUI lookingGUI = new LookingGUI();
 
-    private LookingGUI(){
+    private LookingGUI() {
         buttons = new JButton[10][10];
         frame = new JFrame();
         panel = new JPanel();
         f = new File(this.getClass().getResource("/").getPath());
-        // first = new ImageIcon(f.getPath() + "/background.png");
+        first = new ImageIcon(f.getPath() + "/background.png");
+        setGui();
     }
 
-    public static LookingGUI getInstance(){
+    public static LookingGUI getInstance() {
         return lookingGUI;
     }
 
-    public void go(){
-        frame.setTitle("Calabash VS Monster");
+    public void setGui() {
         frame.getContentPane().add(panel);
-        panel.setLayout(new GridLayout(10, 10));
-        panel.setSize(600, 600);
-        
-        frame.setSize(800, 635);
-        frame.setLayout(null);
-        frame.setResizable(false);
         for (int y = 0; y < 10; ++y) {
             for (int x = 0; x < 10; ++x) {
                 buttons[x][y] = new JButton(background);
                 panel.add(buttons[x][y]);
             }
         }
+    }
+
+    public void go() {
+        frame.setTitle("Calabash VS Monster");
+        panel.setLayout(new GridLayout(10, 10));
+        panel.setSize(600, 600);
+        frame.setSize(800, 635);
+        frame.setLayout(null);
+        frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.repaint();
         frame.setVisible(true);
@@ -122,11 +126,14 @@ public class LookingGUI {
             }
         }
     }
-    public void disable(){
+
+    public void disable() {
         for (int y = 0; y < 10; ++y) {
             for (int x = 0; x < 10; ++x) {
                 buttons[x][y].setEnabled(false);
             }
         }
+        Controller.getInstance().setLoop(false);
     }
+
 }
