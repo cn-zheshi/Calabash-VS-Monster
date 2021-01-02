@@ -216,6 +216,7 @@ public class MainGUI {
             if (Controller.getInstance().isMyTurn()) {
                 Controller controller = Controller.getInstance();
                 controller.setMyTurn(false);
+                controller.setIsMoved(false);
                 controller.updateTurn();
                 Client.getInstance().sendMessage("Turn-End");
             }
