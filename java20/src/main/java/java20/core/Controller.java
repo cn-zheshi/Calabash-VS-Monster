@@ -332,6 +332,7 @@ public class Controller {
         if (str[0].contains("Turn-End")) {
             if (gameType == GameType.Playing) {
                 isMyTurn = true;
+                this.alert("Your Turn", "你的回合", 300);
             }
             if(gameType==GameType.Looking){
                 turnPanel.updateTurn();

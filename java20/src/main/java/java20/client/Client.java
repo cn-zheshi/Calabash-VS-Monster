@@ -84,7 +84,6 @@ public class Client {
                         lose = true;
                         break;
                     }
-                    // TODO: 解析并映射至本方屏幕
                     Controller.getInstance().processInstruction(message);
                 }
             } catch (Exception e) {
