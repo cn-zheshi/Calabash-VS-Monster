@@ -47,7 +47,7 @@ public class Client {
 
     public void setUpNetworking() {
         try {
-            sock = new Socket("127.0.0.1", 3000);
+            sock = new Socket("172.26.69.211", 3000);
             InputStreamReader streamReader = new InputStreamReader(sock.getInputStream());
             reader = new BufferedReader(streamReader);
             writer = new PrintWriter(sock.getOutputStream());
@@ -59,7 +59,8 @@ public class Client {
 
     public void sendMessage(String message) {
         try {
-            fWriter.write(message);
+            fWriter.write(message+"\n");
+            fWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -81,7 +82,8 @@ public class Client {
                         lose = true;
                         break;
                     }
-                    fWriter.write(message);
+                    fWriter.write(message+"\n");
+                    fWriter.flush();
                     // TODO: 解析并映射至本方屏幕
                    Controller.getInstance().processInstruction(message);
                 }
