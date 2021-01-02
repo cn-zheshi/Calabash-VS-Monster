@@ -55,18 +55,29 @@ public class MainGUI {
         // TODO: 加载图片资源
         // background = new ImageIcon(f.getPath() + "/background.png");
         // first = new ImageIcon(f.getPath() + "/first.png");
+        setGui();
     }
 
     public static MainGUI getInstance() {
         return mainGUI;
     }
 
-    public void go() {
-        frame.setTitle("Calabash VS Monster");
+    public void setGui() {
         frame.getContentPane().add(panel);
         frame.getContentPane().add(turnEndButton);
         frame.getContentPane().add(moveButton);
         frame.getContentPane().add(useAbilityButton);
+        for (int y = 0; y < 10; ++y) {
+            for (int x = 0; x < 10; ++x) {
+                buttons[x][y] = new JButton(background);
+                buttons[x][y].addActionListener(new ClickHandler());
+                panel.add(buttons[x][y]);
+            }
+        }
+    }
+
+    public void go() {
+        frame.setTitle("Calabash VS Monster");
         panel.setLayout(new GridLayout(10, 10));
         panel.setSize(600, 600);
         useAbilityButton.addActionListener(new UseAbilityButton());
@@ -81,13 +92,6 @@ public class MainGUI {
         frame.setSize(800, 635);
         frame.setLayout(null);
         frame.setResizable(false);
-        for (int y = 0; y < 10; ++y) {
-            for (int x = 0; x < 10; ++x) {
-                buttons[x][y] = new JButton(background);
-                buttons[x][y].addActionListener(new ClickHandler());
-                panel.add(buttons[x][y]);
-            }
-        }
         // frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.repaint();
@@ -172,6 +176,7 @@ public class MainGUI {
         useAbilityButton.setEnabled(false);
         moveButton.setEnabled(false);
         turnEndButton.setEnabled(false);
+        Controller.getInstance().setLoop(false);
     }
 
     public class ClickHandler implements ActionListener {
