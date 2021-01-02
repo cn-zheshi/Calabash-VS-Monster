@@ -51,7 +51,9 @@ public class Insight extends Skill {
                 continue;
             }
             Goblin goblin = (Goblin) cur;
-            goblin.getSkill().modifyCooldown(1);
+            if (goblin.getSkill() != null) {
+                goblin.getSkill().modifyCooldown(1);
+            }
         }
         this.leftTime = this.cd;
     }
