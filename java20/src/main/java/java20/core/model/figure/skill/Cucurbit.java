@@ -5,6 +5,7 @@ import java20.core.Controller;
 import java20.core.model.battlefield.Board;
 import java20.core.model.figure.Creature;
 import java20.core.model.figure.King;
+import java20.util.GameType;
 import java20.util.Race;
 
 /**
@@ -38,6 +39,8 @@ public class Cucurbit extends Skill {
         King target = controller.getKing(result + 1);
         target.seal(1);
         this.leftTime = this.cd;
-        Client.getInstance().sendMessage("Seal-King " + result);
+        if (Controller.getInstance().getGameType() == GameType.Playing && Controller.getInstance().isMyTurn()) {
+            Client.getInstance().sendMessage("Seal-King " + result);
+        }
     }
 }

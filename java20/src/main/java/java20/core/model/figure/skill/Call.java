@@ -6,6 +6,7 @@ import java20.core.model.battlefield.Board;
 import java20.core.model.battlefield.Position;
 import java20.core.model.figure.Calabash;
 import java20.core.model.figure.Creature;
+import java20.util.GameType;
 import java20.util.Rand;
 
 import java.util.ArrayList;
@@ -48,7 +49,9 @@ public class Call extends Skill {
         if (target.isDead()) {
             target.resurge();
             board.setVal(available.get(rand), target.getRace());
-            Client.getInstance().sendMessage("Set " + result + " " + available.get(rand).toString());
+            if (Controller.getInstance().getGameType() == GameType.Playing && Controller.getInstance().isMyTurn()) {
+                Client.getInstance().sendMessage("Set " + result + " " + available.get(rand).toString());
+            }
         } else {
             board.moveTo(target.getPosition(), available.get(rand), target.getRace());
         }

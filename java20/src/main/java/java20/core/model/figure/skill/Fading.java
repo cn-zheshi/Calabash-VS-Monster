@@ -6,6 +6,7 @@ import java20.core.model.battlefield.Board;
 import java20.core.model.battlefield.Position;
 import java20.core.model.figure.Calabash;
 import java20.core.model.figure.Creature;
+import java20.util.GameType;
 
 /**
  * @author hwd
@@ -38,6 +39,8 @@ public class Fading extends Skill {
         board.moveTo(cur, destination, target.getRace());
         target.setPosition(destination);
         this.leftTime = this.cd;
-        Client.getInstance().sendMessage("Seal-Calabash " + result);
+        if (Controller.getInstance().getGameType() == GameType.Playing && Controller.getInstance().isMyTurn()) {
+            Client.getInstance().sendMessage("Seal-Calabash " + result);
+        }
     }
 }
