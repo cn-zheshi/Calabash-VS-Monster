@@ -50,6 +50,7 @@ public class MainMenu {
         public void actionPerformed(ActionEvent e) {
             Controller.getInstance().setGameType(GameType.Playing);
             frame.setEnabled(false);
+            frame.setVisible(false);
         }
 
     }
@@ -60,6 +61,7 @@ public class MainMenu {
         public void actionPerformed(ActionEvent e) {
             Controller.getInstance().setGameType(GameType.Looking);
             frame.setEnabled(false);
+            frame.setVisible(false);
         }
 
     }
