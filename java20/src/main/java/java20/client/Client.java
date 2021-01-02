@@ -83,9 +83,7 @@ public class Client {
                     }
                     fWriter.write(message);
                     // TODO: 解析并映射至本方屏幕
-                    if (message.equals("Turn End")) {
-                        Controller.getInstance().setMyTurn(true);
-                    }
+                   Controller.getInstance().processInstruction(message);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

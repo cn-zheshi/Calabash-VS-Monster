@@ -161,8 +161,8 @@ public class Controller {
             }
             this.mainGUI.disable();
         }
-        if(gameType==GameType.Looking){
-             
+        if (gameType == GameType.Looking) {
+
         }
     }
 
@@ -173,15 +173,45 @@ public class Controller {
             if (creature.getPosList().contains(position)) {
                 creature.move(position);
                 positionBeChosed = null;
+                if (!creature.isTraitorous()) {
+                    isMoved = true;
+                }
+            } else {
+                positionBeChosed = position;
             }
+            isMoving = false;
         } else {
             positionBeChosed = position;
             return;
         }
     }
 
+    public void move() {
+        if (positionBeChosed == null) {
+            return;
+        }
+        if (this.board.getCreature(positionBeChosed) == null) {
+            return;
+        }
+        if (!this.board.isAlly(positionBeChosed, this.side)) {
+            return;
+        }
+        if (this.board.getCreature(positionBeChosed).isAvailable()
+                || this.board.getCreature(positionBeChosed).isALive()) {
+            isMoving = true;
+        }
+    }
+
     public void useAbility() {
         if (positionBeChosed != null) {
+            if (this.board.getCreature(positionBeChosed) == null) {
+                this.alert("提示", "未选择单位", 500);
+                return;
+            }
+            if (!this.board.isAlly(positionBeChosed, this.side)) {
+                this.alert("提示", "非友方单位", 500);
+                return;
+            }
             if (Board.getInstance().getCreature(positionBeChosed) instanceof Calabash) {
                 Calabash calabash = (Calabash) Board.getInstance().getCreature(positionBeChosed);
                 if (calabash.isSkillAvailable()) {
@@ -189,6 +219,7 @@ public class Controller {
                     positionBeChosed = null;
                 } else {
                     this.alert("提示", "不能使用技能", 500);
+                    return;
                 }
             } else if ((Board.getInstance().getCreature(positionBeChosed) instanceof King)) {
                 King king = (King) Board.getInstance().getCreature(positionBeChosed);
@@ -197,12 +228,70 @@ public class Controller {
                     positionBeChosed = null;
                 } else {
                     this.alert("提示", "不能使用技能", 500);
+                    return;
                 }
             } else {
                 this.alert("提示", "该单位无技能", 500);
+                return;
             }
         } else {
             this.alert("提示", "未选择单位", 500);
+            return;
+        }
+    }
+
+    public void processInstruction(String instruction) {
+        if (instruction == null) {
+            return;
+        }
+        String[] str = instruction.split("\\s+");
+        if (str.length == 0) {
+            return;
+        }
+        if (str[0].contains("Move")) {
+            int x0 = Integer.parseInt(str[1].split(",")[0]);
+            int y0 = Integer.parseInt(str[1].split(",")[1]);
+            int x1 = Integer.parseInt(str[2].split(",")[0]);
+            int y1 = Integer.parseInt(str[2].split(",")[1]);
+            Creature creature = this.board.getCreature(x0, y0);
+            creature.move(x1, y1);
+            return;
+        }
+        if (str[0].contains("UseAbility")) {
+            int x = Integer.parseInt(str[1].split(",")[0]);
+            int y = Integer.parseInt(str[1].split(",")[1]);
+            Creature creature = this.board.getCreature(x, y);
+            if (creature instanceof Calabash) {
+                ((Calabash) creature).employ();
+            }
+            if (creature instanceof Goblin) {
+                ((Goblin) creature).employ();
+            }
+        }
+        if (str[0].contains("Set")) {
+            int num = Integer.parseInt(str[1]);
+            Calabash calabash = getCalabash(num);
+            if (calabash.isDead()) {
+                calabash.resurge();
+            }
+            int x = Integer.parseInt(str[2].split(",")[0]);
+            int y = Integer.parseInt(str[2].split(",")[1]);
+            Position position = new Position(x, y);
+            calabash.setPosition(position);
+            return;
+        }
+        if (str[0].contains("Seal")) {
+            int x = Integer.parseInt(str[1].split(",")[0]);
+            int y = Integer.parseInt(str[1].split(",")[1]);
+            Position position = new Position(x, y);
+            Creature creature = this.board.getCreature(position);
+            creature.seal(1);
+        }
+        if (str[0].contains("Turn-End")) {
+            if (gameType == GameType.Playing) {
+                isMyTurn = true;
+            }
+            updateTurn();
         }
     }
 
@@ -237,7 +326,9 @@ public class Controller {
                 ((Calabash) creatures.get(i)).getSkill().updateCooldown();
                 continue;
             }
-            ((Goblin) creatures.get(i)).getSkill().updateCooldown();
+            if (((Goblin) creatures.get(i)).getSkill() != null) {
+                ((Goblin) creatures.get(i)).getSkill().updateCooldown();
+            }
         }
         ArrayList<King> kings = this.board.getKings();
         kings.forEach(king -> king.getSkill().updateCooldown());
