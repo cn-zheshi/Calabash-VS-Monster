@@ -59,7 +59,7 @@ public class Client {
 
     public void sendMessage(String message) {
         try {
-            fWriter.write(message+"\n");
+            fWriter.write(message + "\n");
             fWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,10 +82,10 @@ public class Client {
                         lose = true;
                         break;
                     }
-                    fWriter.write(message+"\n");
+                    fWriter.write(message + "\n");
                     fWriter.flush();
                     // TODO: 解析并映射至本方屏幕
-                   Controller.getInstance().processInstruction(message);
+                    Controller.getInstance().processInstruction(message);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -97,9 +97,9 @@ public class Client {
 
         public void run() {
             String message;
-            Thread thread = new Thread(new Runnable(){
+            Thread thread = new Thread(new Runnable() {
                 @Override
-                public void run(){
+                public void run() {
                     Controller.getInstance().getMatchingGUI().go();
                 }
             });
