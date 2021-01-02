@@ -144,7 +144,7 @@ public class Controller {
     }
 
     public void go() {
-        while(loop){
+        while (loop) {
             if (gameType == GameType.Playing) {
                 try {
                     FileWriter fWriter = new FileWriter(new File("record.txt"));
@@ -179,7 +179,7 @@ public class Controller {
                 this.mainGUI.disable();
             }
             if (gameType == GameType.Looking) {
-                turnPanel=new TurnPanel();
+                turnPanel = new TurnPanel();
                 this.lookingGUI.getFrame().getContentPane().add(turnPanel);
                 this.lookingGUI.go();
                 try {
@@ -267,6 +267,16 @@ public class Controller {
                     this.alert("提示", "不能使用技能", 500);
                     return;
                 }
+            } else if ((Board.getInstance().getCreature(positionBeChosed) instanceof Goblin)) {
+                Goblin goblin = (Goblin) (Board.getInstance().getCreature(positionBeChosed));
+                if (goblin.getRace() == Race.Demon) {
+                    this.alert("提示", "该单位无技能", 500);
+                    return;
+                }
+                if (goblin.isSkillAvailable()) {
+                    goblin.employ();
+                    positionBeChosed = null;
+                }
             } else {
                 this.alert("提示", "该单位无技能", 500);
                 return;
@@ -334,7 +344,7 @@ public class Controller {
                 isMyTurn = true;
                 this.alert("Your Turn", "你的回合", 300);
             }
-            if(gameType==GameType.Looking){
+            if (gameType == GameType.Looking) {
                 turnPanel.updateTurn();
             }
             updateTurn();
