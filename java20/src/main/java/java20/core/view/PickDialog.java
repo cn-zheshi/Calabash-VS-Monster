@@ -11,13 +11,13 @@ import java.util.ArrayList;
  * @date 2020-12-27
  **/
 @Data
-public class PickFrame extends JFrame {
+public class PickDialog extends JDialog {
     private PickPanel pickPanel;
     private boolean end;
     private int result;
 
-    public PickFrame(String guiName, String[] choices, int width, int height) {
-        super(guiName);
+    public PickDialog(String guiName, String[] choices, int width, int height) {
+        super(MainGUI.getInstance().getFrame(), guiName, true);
         this.end = false;
         this.result = -1;
         this.pickPanel = new PickPanel(choices);
@@ -53,8 +53,10 @@ public class PickFrame extends JFrame {
             for (int i = 0; i < num; ++i) {
                 Button cur = new Button(choices[i], i);
                 cur.addActionListener(e -> {
-                    PickFrame.this.end = true;
-                    PickFrame.this.result = cur.num;
+                    PickDialog.this.end = true;
+                    PickDialog.this.result = cur.num;
+                    PickDialog.this.setVisible(false);
+                    PickDialog.this.setEnabled(false);
                 });
                 this.add(cur);
             }
@@ -75,7 +77,7 @@ public class PickFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-        PickFrame test = new PickFrame("选择", new String[] { "大娃", "二娃", "三娃", "四娃", "五娃" }, 210, 115);
+        PickDialog test = new PickDialog("选择", new String[] { "大娃", "二娃", "三娃", "四娃", "五娃" }, 210, 115);
         test.go();
         System.out.println(test.getResult());
     }

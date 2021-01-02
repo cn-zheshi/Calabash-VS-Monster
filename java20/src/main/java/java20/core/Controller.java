@@ -11,7 +11,7 @@ import java20.core.model.figure.movestrategy.*;
 import java20.core.model.figure.skill.*;
 import java20.core.view.MainGUI;
 import java20.core.view.MatchingGUI;
-import java20.core.view.PickFrame;
+import java20.core.view.PickDialog;
 import java20.util.GameType;
 import java20.util.Race;
 import lombok.Data;
@@ -30,7 +30,7 @@ public class Controller {
 
     private MainGUI mainGUI;
     private MatchingGUI matchingGUI;
-    private PickFrame pickGui;
+    private PickDialog pickGui;
     private Board board;
     private Position positionBeChosed;
     private GameType gameType;
@@ -296,7 +296,7 @@ public class Controller {
     }
 
     public int displayPickFrame(String guiName, String[] choices, int width, int height) {
-        this.pickGui = new PickFrame(guiName, choices, width, height);
+        this.pickGui = new PickDialog(guiName, choices, width, height);
         this.pickGui.go();
         return this.pickGui.getResult();
     }
