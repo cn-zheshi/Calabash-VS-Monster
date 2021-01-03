@@ -1,10 +1,11 @@
 package java20.core.model.figure.skill;
 
-
+import java20.client.Client;
 import java20.core.Controller;
 import java20.core.model.battlefield.Board;
 import java20.core.model.battlefield.Position;
 import java20.core.model.figure.Creature;
+import java20.util.GameType;
 import java20.util.Race;
 
 /**
@@ -13,7 +14,6 @@ import java20.util.Race;
  * @date 2020-12-26
  **/
 public class Water extends Skill {
-
 
     /**
      * @param cd        如果为-2表示没有技能 -1表示随时可用且只能用一次的技能 如变身
@@ -29,14 +29,24 @@ public class Water extends Skill {
         Position masterPos = master.getPosition();
         Controller controller = Controller.getInstance();
         Board board = controller.getBoard();
-        Race race = master.getRace();
+        Race race = board.getVal(masterPos);
         for (int i = 0; i < board.getWidth(); ++i) {
-            int x = masterPos.getX() + ((race.isCalabash() || race.isGrandpa()) ? 1 : -1);
-            Position targetPos = new Position(x, masterPos.getY());
-            if (!targetPos.isValid(board.getWidth(), board.getHeight())) break;
-            if (!board.isEnemy(targetPos, race)) continue;
+            int y = masterPos.getY() + ((race.isCalabash() || race.isGrandpa()) ? i : -i);
+            Position targetPos = new Position(masterPos.getX(), y);
+            if (!targetPos.isValid(board.getWidth(), board.getHeight())) {
+                break;
+            }
+            if (!board.isEnemy(targetPos, race)) {
+                continue;
+            }
+            if (targetPos.equals(controller.getUnreachable())) {
+                continue;
+            }
             Creature target = board.getCreature(targetPos);
             target.seal(1);
+            if (Controller.getInstance().getGameType() == GameType.Playing && Controller.getInstance().isMyTurn()) {
+                Client.getInstance().sendMessage("Seal " + target.getPosition().toString());
+            }
             break;
         }
         this.leftTime = this.cd;

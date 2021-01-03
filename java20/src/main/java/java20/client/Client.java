@@ -59,7 +59,8 @@ public class Client {
 
     public void sendMessage(String message) {
         try {
-            fWriter.write(message);
+            fWriter.write(message + "\n");
+            fWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -77,15 +78,13 @@ public class Client {
             System.out.println("reading");
             try {
                 while (((message = reader.readLine()) != null) && !lose) {
+                    fWriter.write(message + "\n");
+                    fWriter.flush();
                     if (message.equals("Lose")) {
                         lose = true;
                         break;
                     }
-                    fWriter.write(message);
-                    // TODO: 解析并映射至本方屏幕
-                    if (message.equals("Turn End")) {
-                        Controller.getInstance().setMyTurn(true);
-                    }
+                    Controller.getInstance().processInstruction(message);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -97,9 +96,9 @@ public class Client {
 
         public void run() {
             String message;
-            Thread thread = new Thread(new Runnable(){
+            Thread thread = new Thread(new Runnable() {
                 @Override
-                public void run(){
+                public void run() {
                     Controller.getInstance().getMatchingGUI().go();
                 }
             });

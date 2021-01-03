@@ -10,10 +10,6 @@ import lombok.Data;
 
 import java.util.ArrayList;
 
-/**
- * @author hwd
- * @date 2020-12-26
- **/
 @Data
 public abstract class Creature {
 
@@ -54,6 +50,7 @@ public abstract class Creature {
             return;
         this.statusTime = -2;
         this.status = Status.DEAD;
+        Board.getInstance().setVal(this.position, null);
     }
 
     public void seal(int turns) {
@@ -72,21 +69,23 @@ public abstract class Creature {
     }
 
     public void betray(int turns) {
-        this.statusTime = turns * 2;
+        this.statusTime = turns;
         this.status = Status.TRAITOROUS;
     }
 
     public void updateStatus() {
         Board board = Board.getInstance();
-        if (this.status.equals(Status.ALIVE) || this.status.equals(Status.DEAD))
+        if (this.status.equals(Status.ALIVE) || this.status.equals(Status.DEAD)) {
             return;
+        }
+        --this.statusTime;
         if (this.statusTime == 0) {
-            if (this.isTraitorous())
+            if (this.isTraitorous()) {
                 board.setVal(this.position, this.race);
+            }
             this.status = Status.ALIVE;
             return;
         }
-        this.statusTime -= 2;
     }
 
     public boolean isDead() {
@@ -118,9 +117,8 @@ public abstract class Creature {
     }
 
     public void move(Position position) {
-        Board.getInstance().moveTo(this.position, position, this.race);
-        Controller.getInstance().setIsMoving(false);
-        Controller.getInstance().setIsMoved(true);
+        Board.getInstance().moveTo(this.position, position, Board.getInstance().getVal(this.position));
+        this.position = position;
     }
 
     /**
@@ -128,6 +126,6 @@ public abstract class Creature {
      * @description 获得可以到达的坐标列表
      */
     public ArrayList<Position> getPosList() {
-        return this.moveStrategy.availablePos(this.position);
+        return this.moveStrategy.availablePos(this.position, Board.getInstance().getVal(position));
     }
 }

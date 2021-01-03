@@ -6,6 +6,7 @@ import java20.core.model.battlefield.Board;
 import java20.core.model.battlefield.Position;
 import java20.core.model.figure.Calabash;
 import java20.core.model.figure.Creature;
+import java20.util.GameType;
 
 /**
  * @author hwd
@@ -30,14 +31,19 @@ public class Fading extends Skill {
         int result = controller.displayPickFrame("选择葫芦娃", new String[] { "大娃", "二娃", "三娃", "四娃", "五娃", "六娃", "七娃" },
                 300, 100);
         Calabash target = controller.getCalabash(result);
-        target.seal(1);
-        Position cur = target.getPosition();
-        Position destination = new Position(cur);
-        if (destination.getY() != 0)
-            destination.setY(destination.getY() - 1);
-        board.moveTo(cur, destination, target.getRace());
-        target.setPosition(destination);
-        this.leftTime = this.cd;
-        Client.getInstance().sendMessage("Seal-Calabash " + result);
+        if (!target.isDead() && !target.getPosition().equals(controller.getUnreachable())) {
+            target.seal(1);
+            Position cur = target.getPosition();
+            Position destination = new Position(cur);
+            if (destination.getY() != 0) {
+                destination.setY(destination.getY() - 1);
+            }
+            board.moveTo(cur, destination, target.getRace());
+            target.setPosition(destination);
+            this.leftTime = this.cd;
+            if (Controller.getInstance().getGameType() == GameType.Playing && Controller.getInstance().isMyTurn()) {
+                Client.getInstance().sendMessage("Seal " + target.getPosition().toString());
+            }
+        }
     }
 }

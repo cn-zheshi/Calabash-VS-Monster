@@ -6,6 +6,7 @@ import java20.core.model.battlefield.Board;
 import java20.core.model.battlefield.Position;
 import java20.core.model.figure.Calabash;
 import java20.core.model.figure.Creature;
+import java20.util.GameType;
 import java20.util.Rand;
 
 import java.util.ArrayList;
@@ -38,8 +39,9 @@ public class Call extends Skill {
         ArrayList<Position> available = new ArrayList<>();
         for (int i = 0; i < 8; ++i) {
             Position tmp = new Position(cur.getX() + posAround[i][0], cur.getY() + posAround[i][1]);
-            if (board.isVoid(tmp))
+            if (board.isVoid(tmp)) {
                 available.add(tmp);
+            }
         }
         int rand = Rand.randNum(available.size());
         int result = controller.displayPickFrame("选择召唤对象", new String[] { "大娃", "二娃", "三娃", "四娃", "五娃", "六娃", "七娃" },
@@ -48,7 +50,9 @@ public class Call extends Skill {
         if (target.isDead()) {
             target.resurge();
             board.setVal(available.get(rand), target.getRace());
-            Client.getInstance().sendMessage("Set " + result + " " + available.get(rand).toString());
+            if (Controller.getInstance().getGameType() == GameType.Playing && Controller.getInstance().isMyTurn()) {
+                Client.getInstance().sendMessage("Set " + result + " " + available.get(rand).toString());
+            }
         } else {
             board.moveTo(target.getPosition(), available.get(rand), target.getRace());
         }

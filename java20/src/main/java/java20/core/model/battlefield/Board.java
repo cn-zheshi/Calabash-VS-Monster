@@ -1,8 +1,10 @@
 package java20.core.model.battlefield;
 
 import java20.client.Client;
+import java20.core.Controller;
 import java20.core.model.figure.Creature;
 import java20.core.model.figure.King;
+import java20.util.GameType;
 import java20.util.Race;
 import lombok.Data;
 
@@ -57,10 +59,12 @@ public class Board {
         if (isEnemy(x1, y1, race)) {
             getCreature(x1, y1).dead();
         }
-        if (getCreature(x1, y1) == null || getCreature(x1, y1).isDead()) {
+        if (getCreature(x1, y1) == null) {
             setVal(x0, y0, null);
             setVal(x1, y1, race);
-            Client.getInstance().sendMessage("Move " + x0 + "," + y0 + " " + x1 + "," + y1);
+            if (Controller.getInstance().getGameType() == GameType.Playing && Controller.getInstance().isMyTurn()) {
+                Client.getInstance().sendMessage("Move " + x0 + "," + y0 + " " + x1 + "," + y1);
+            }
         }
     }
 

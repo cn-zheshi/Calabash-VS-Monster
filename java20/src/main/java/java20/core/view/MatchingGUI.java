@@ -42,7 +42,9 @@ public class MatchingGUI {
                 ++count;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            this.frame.setEnabled(false);
+            this.frame.setVisible(false);
+            this.frame.dispose();
         }
     }
 }

@@ -36,7 +36,8 @@ public abstract class Skill {
     }
 
     public void updateCooldown() {
-        if (this.cd == 0 || this.onlyOnce || this.leftTime == 0) return;
+        if (this.cd == 0 || this.onlyOnce || this.leftTime == 0)
+            return;
         --this.leftTime;
     }
 
@@ -49,11 +50,12 @@ public abstract class Skill {
     }
 
     /**
-     * 封印技能一回合一般会用到这个
-     * 也可以用于加快技能冷却
+     * 封印技能一回合一般会用到这个 也可以用于加快技能冷却
      */
     public void modifyCooldown(int offset) {
         this.leftTime += offset * 2;
-        if (this.leftTime < 0) this.leftTime = 0;
+        if (this.leftTime < 0) {
+            this.leftTime = 0;
+        }
     }
 }

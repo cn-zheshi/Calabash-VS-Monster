@@ -1,6 +1,5 @@
 package java20.core.model.figure.skill;
 
-
 import java20.core.model.figure.Creature;
 
 /**
@@ -9,7 +8,6 @@ import java20.core.model.figure.Creature;
  * @date 2020-12-26
  **/
 public class Invisibility extends Skill {
-
 
     /**
      * @param cd        如果为-2表示没有技能 -1表示随时可用且只能用一次的技能 如变身

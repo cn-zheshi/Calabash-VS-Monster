@@ -1,16 +1,13 @@
 package java20.core.model.figure;
 
 import java20.client.Client;
+import java20.core.Controller;
 import java20.core.model.battlefield.Position;
 import java20.core.model.figure.movestrategy.MoveStrategy;
 import java20.core.model.figure.skill.Skill;
+import java20.util.GameType;
 import java20.util.Race;
 import lombok.Getter;
-
-/**
- * @author hwd
- * @date 2020-12-27 12:14 AM
- **/
 
 @Getter
 public class King extends Creature {
@@ -24,7 +21,9 @@ public class King extends Creature {
 
     public void employ() {
         this.skill.employ(this);
-        Client.getInstance().sendMessage("UseAbility " + this.getPosition().toString());
+        if (Controller.getInstance().getGameType() == GameType.Playing && Controller.getInstance().isMyTurn()) {
+            Client.getInstance().sendMessage("UseAbility " + this.getPosition().toString());
+        }
     }
 
     public boolean isSkillAvailable() {
