@@ -115,7 +115,7 @@ public abstract class Creature {
     }
 
     public void move(Position position) {
-        Board.getInstance().moveTo(this.position, position, this.race);
+        Board.getInstance().moveTo(this.position, position, Board.getInstance().getVal(this.position));
         this.position = position;
     }
 
