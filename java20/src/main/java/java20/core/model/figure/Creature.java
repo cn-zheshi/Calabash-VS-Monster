@@ -69,7 +69,7 @@ public abstract class Creature {
     }
 
     public void betray(int turns) {
-        this.statusTime = turns;
+        this.statusTime = turns * 2;
         this.status = Status.TRAITOROUS;
     }
 
