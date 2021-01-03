@@ -2,8 +2,8 @@ package java20.core.model.figure.movestrategy;
 
 import java20.core.Controller;
 import java20.core.model.battlefield.Board;
-import java20.util.Race;
 import java20.core.model.battlefield.Position;
+import java20.util.Race;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @date 2020-12-26
  **/
 public class LineC implements MoveStrategy {
-    private static int[][] poses = new int[][] { { 0, 1 }, { 1, 0 }, { -1, 0 } };
+    private static int[][] poses = new int[][]{{0, -1}, {1, 0}, {-1, 0}};
 
     @Override
     public ArrayList<Position> availablePos(Position position, Race race) {

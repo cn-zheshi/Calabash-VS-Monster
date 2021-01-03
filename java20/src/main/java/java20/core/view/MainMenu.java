@@ -1,56 +1,128 @@
 package java20.core.view;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-
 import java20.core.Controller;
 import java20.util.GameType;
 
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 
-public class MainMenu {
-    private JFrame frame;
-    private JButton playButton;
-    private JButton lookingButton;
+//public class MainMenu {
+//    private JFrame frame;
+//    private JButton playButton;
+//    private JButton lookingButton;
+//
+//    public static void main(String[] args) {
+//        new MainMenu().go();
+//    }
+//
+//    public MainMenu() {
+//        frame = new JFrame();
+//        playButton = new JButton("开始游戏");
+//        lookingButton = new JButton("查看录像");
+//    }
+//
+//    public void go() {
+//        frame.setTitle("Calabash VS Monster");
+//        frame.getContentPane().setLayout(null);
+//        frame.getContentPane().add(playButton);
+//        frame.getContentPane().add(lookingButton);
+//        playButton.addActionListener(new PlayButton());
+//        playButton.setSize(200, 80);
+//        playButton.setLocation(300, 300);
+//        lookingButton.addActionListener(new LookingButton());
+//        lookingButton.setSize(200, 80);
+//        lookingButton.setLocation(300, 400);
+//        frame.setSize(800, 635);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setResizable(false);
+//        frame.setVisible(true);
+//    }
+//
+//    public JFrame getFrame() {
+//        return this.frame;
+//    }
+//
+//    public class PlayButton implements ActionListener {
+//
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            Controller.getInstance().setGameType(GameType.Playing);
+//            frame.setEnabled(false);
+//            frame.setVisible(false);
+//        }
+//
+//    }
+//
+//    public class LookingButton implements ActionListener {
+//
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            Controller.getInstance().setGameType(GameType.Looking);
+//            frame.setEnabled(false);
+//            frame.setVisible(false);
+//        }
+//
+//    }
+//}
 
-    public static void main(String[] args) {
-        new MainMenu().go();
-    }
+
+public class MainMenu extends JFrame {
+
+    private BackPanel backPanel;
 
     public MainMenu() {
-        frame = new JFrame();
-        playButton = new JButton("开始游戏");
-        lookingButton = new JButton("查看录像");
-    }
+        this.setTitle("Calabash VS Monster");
+        this.getContentPane().setLayout(null);
+        File f = new File(this.getClass().getResource("/").getPath());
+        String url = f.getPath() + "/front.jpg";
+        ImageIcon image = new ImageIcon(url);
 
-    public void go() {
-        frame.setTitle("Calabash VS Monster");
-        frame.getContentPane().setLayout(null);
-        frame.getContentPane().add(playButton);
-        frame.getContentPane().add(lookingButton);
+        backPanel = new BackPanel(image.getImage());
+        backPanel.setBounds(0, 0, 800, 635);
+
+
+        JButton playButton = new JButton("开始游戏");
+        JButton lookingButton = new JButton("查看录像");
+
         playButton.addActionListener(new PlayButton());
         playButton.setSize(200, 80);
         playButton.setLocation(300, 300);
         lookingButton.addActionListener(new LookingButton());
         lookingButton.setSize(200, 80);
         lookingButton.setLocation(300, 400);
-        frame.setSize(800, 635);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setVisible(true);
+
+        this.getContentPane().add(playButton);
+        this.getContentPane().add(lookingButton);
+        this.getContentPane().add(backPanel);
+
+        this.setSize(800, 635);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
+
     }
 
-    public JFrame getFrame(){
-        return this.frame;
+    public static void main(String[] args) {
+        new MainMenu().go();
     }
+
+    public void go() {
+        this.setVisible(true);
+    }
+
+    public JFrame getFrame() {
+        return this;
+    }
+
     public class PlayButton implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             Controller.getInstance().setGameType(GameType.Playing);
-            frame.setEnabled(false);
-            frame.setVisible(false);
+            MainMenu.this.setEnabled(false);
+            MainMenu.this.setVisible(false);
         }
 
     }
@@ -60,9 +132,27 @@ public class MainMenu {
         @Override
         public void actionPerformed(ActionEvent e) {
             Controller.getInstance().setGameType(GameType.Looking);
-            frame.setEnabled(false);
-            frame.setVisible(false);
+            MainMenu.this.setEnabled(false);
+            MainMenu.this.setVisible(false);
         }
 
     }
+
+    public static class BackPanel extends JPanel {
+        private Image image;
+
+        public BackPanel(Image image) {
+            this.image = image;
+            this.setOpaque(true);
+        }
+
+        @Override
+        public void paintComponent(Graphics g) {
+            super.paintComponents(g);
+            g.drawImage(image, 0, 0, this.getWidth(), this.getHeight(), this);
+        }
+    }
+
 }
+
+

@@ -30,11 +30,11 @@ public class Seduction extends Skill {
         Position cur = master.getPosition();
         Board board = Board.getInstance();
         Controller controller = Controller.getInstance();
-        int result = controller.displayPickFrame("选择魅惑对象", new String[] { "大娃", "二娃", "三娃", "四娃", "五娃", "六娃", "七娃" },
+        int result = controller.displayPickFrame("选择魅惑对象", new String[]{"大娃", "三娃", "四娃", "五娃", "六娃", "七娃"},
                 300, 100);
         King grandpa = controller.getKing(0);
         grandpa.intensify(1);
-        Calabash target = controller.getCalabash(result);
+        Calabash target = controller.getCalabash(((result == 0) ? 0 : result + 1));
         if (!target.isDead() && !target.getPosition().equals(controller.getUnreachable())) {
             board.setVal(target.getPosition(), Race.Goblin);
             target.betray(1);

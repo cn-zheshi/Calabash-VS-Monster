@@ -24,9 +24,8 @@ public class Upgrade extends Skill {
 
     @Override
     public void employ(Creature master) {
-        if (!master.getRace().isMonster()) {
-            return;
-        }
+        if (!master.getRace().isMonster()) return;
+        if (master.getPosition().getY() > 4) return;
         Controller controller = Controller.getInstance();
         Board board = controller.getBoard();
         master.setMoveStrategy(new SlashA());

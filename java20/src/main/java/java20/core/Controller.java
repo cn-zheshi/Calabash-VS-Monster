@@ -9,29 +9,15 @@ import java20.core.model.figure.Goblin;
 import java20.core.model.figure.King;
 import java20.core.model.figure.movestrategy.*;
 import java20.core.model.figure.skill.*;
-import java20.core.view.GameEndDialog;
-import java20.core.view.LookingGUI;
-import java20.core.view.MainGUI;
-import java20.core.view.MatchingGUI;
-import java20.core.view.PickDialog;
-import java20.core.view.ReplayDialog;
-import java20.core.view.SaveDialog;
-import java20.core.view.TurnPanel;
+import java20.core.view.*;
 import java20.util.GameType;
 import java20.util.Race;
-import java20.util.Status;
 import lombok.Data;
 
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 @Data
@@ -142,6 +128,107 @@ public class Controller {
         creatures.add(seventh);
         this.board.setVal(seventhPosition, Race.Seventh);
         // TODO: 添加普通妖精
+
+        Position pos1 = new Position(0, 6);
+        Goblin goblin1 = new Goblin("小妖精1号", Race.Goblin, pos1, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin1);
+        this.board.setVal(pos1, Race.Goblin);
+
+        Position pos2 = new Position(2, 6);
+        Goblin goblin2 = new Goblin("小妖精2号", Race.Goblin, pos2, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin2);
+        this.board.setVal(pos2, Race.Goblin);
+
+        Position pos3 = new Position(3, 6);
+        Goblin goblin3 = new Goblin("小妖精3号", Race.Goblin, pos3, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin3);
+        this.board.setVal(pos3, Race.Goblin);
+
+        Position pos4 = new Position(4, 6);
+        Goblin goblin4 = new Goblin("小妖精4号", Race.Goblin, pos4, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin4);
+        this.board.setVal(pos4, Race.Goblin);
+
+        Position pos5 = new Position(5, 6);
+        Goblin goblin5 = new Goblin("小妖精5号", Race.Goblin, pos5, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin5);
+        this.board.setVal(pos5, Race.Goblin);
+
+        Position pos6 = new Position(6, 6);
+        Goblin goblin6 = new Goblin("小妖精6号", Race.Goblin, pos6, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin6);
+        this.board.setVal(pos6, Race.Goblin);
+
+        Position pos7 = new Position(7, 6);
+        Goblin goblin7 = new Goblin("小妖精7号", Race.Goblin, pos7, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin7);
+        this.board.setVal(pos7, Race.Goblin);
+
+        Position pos8 = new Position(9, 6);
+        Goblin goblin8 = new Goblin("小妖精8号", Race.Goblin, pos8, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin8);
+        this.board.setVal(pos8, Race.Goblin);
+
+        Position pos9 = new Position(1, 7);
+        Goblin goblin9 = new Goblin("小妖精9号", Race.Goblin, pos9, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin9);
+        this.board.setVal(pos9, Race.Goblin);
+
+        Position pos10 = new Position(3, 7);
+        Goblin goblin10 = new Goblin("小妖精10号", Race.Goblin, pos10, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin10);
+        this.board.setVal(pos10, Race.Goblin);
+
+        Position pos11 = new Position(6, 7);
+        Goblin goblin11 = new Goblin("小妖精11号", Race.Goblin, pos11, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin11);
+        this.board.setVal(pos11, Race.Goblin);
+
+        Position pos12 = new Position(8, 7);
+        Goblin goblin12 = new Goblin("小妖精12号", Race.Goblin, pos12, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin12);
+        this.board.setVal(pos12, Race.Goblin);
+
+        Position pos13 = new Position(0, 8);
+        Goblin goblin13 = new Goblin("小妖精13号", Race.Goblin, pos13, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin13);
+        this.board.setVal(pos13, Race.Goblin);
+
+        Position pos14 = new Position(2, 8);
+        Goblin goblin14 = new Goblin("小妖精14号", Race.Goblin, pos14, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin14);
+        this.board.setVal(pos14, Race.Goblin);
+
+        Position pos15 = new Position(4, 8);
+        Goblin goblin15 = new Goblin("小妖精15号", Race.Goblin, pos15, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin15);
+        this.board.setVal(pos15, Race.Goblin);
+
+        Position pos16 = new Position(5, 8);
+        Goblin goblin16 = new Goblin("小妖精16号", Race.Goblin, pos16, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin16);
+        this.board.setVal(pos16, Race.Goblin);
+
+        Position pos17 = new Position(7, 8);
+        Goblin goblin17 = new Goblin("小妖精17号", Race.Goblin, pos17, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin17);
+        this.board.setVal(pos17, Race.Goblin);
+
+        Position pos18 = new Position(9, 8);
+        Goblin goblin18 = new Goblin("小妖精18号", Race.Goblin, pos18, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin18);
+        this.board.setVal(pos18, Race.Goblin);
+
+        Position pos19 = new Position(3, 9);
+        Goblin goblin19 = new Goblin("小妖精19号", Race.Goblin, pos19, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin19);
+        this.board.setVal(pos19, Race.Goblin);
+
+        Position pos20 = new Position(6, 9);
+        Goblin goblin20 = new Goblin("小妖精20号", Race.Goblin, pos20, new LineC(), new Upgrade(-1, true, true));
+        creatures.add(goblin20);
+        this.board.setVal(pos20, Race.Goblin);
+
 
         this.board.set(kings, creatures);
         // this.matchingGUI.getFrame().setVisible(true);

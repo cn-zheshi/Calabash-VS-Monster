@@ -1,5 +1,6 @@
 package java20.core.view;
 
+import java20.client.Client;
 import java20.core.Controller;
 import java20.core.model.battlefield.Board;
 import java20.core.model.battlefield.Position;
@@ -65,6 +66,19 @@ public class MainGUI {
         scorpion = new ImageIcon(f.getPath() + "/scorpion.png");
         monster = new ImageIcon(f.getPath() + "/monster.png");
         strongerMonster = new ImageIcon(f.getPath() + "/strongerMonster.png");
+        background.setImage(background.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+        first.setImage(first.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+        second.setImage(second.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+        third.setImage(third.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+        forth.setImage(forth.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+        fifth.setImage(fifth.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+        sixth.setImage(sixth.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+        seventh.setImage(seventh.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+        grandpa.setImage(grandpa.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+        snake.setImage(snake.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+        scorpion.setImage(scorpion.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+        monster.setImage(monster.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+        strongerMonster.setImage(strongerMonster.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
         setGui();
     }
 
