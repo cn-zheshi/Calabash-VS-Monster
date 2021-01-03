@@ -60,6 +60,8 @@ public class Board {
             getCreature(x1, y1).dead();
         }
         if (getCreature(x1, y1) == null) {
+            Creature creature = getCreature(x0, y0);
+            creature.setPosition(new Position(x1, y1));
             setVal(x0, y0, null);
             setVal(x1, y1, race);
             if (Controller.getInstance().getGameType() == GameType.Playing && Controller.getInstance().isMyTurn()) {
