@@ -139,7 +139,7 @@ public class Controller {
         creatures.add(seventh);
         this.board.setVal(seventhPosition, Race.Seventh);
         // TODO: 添加普通妖精
-        
+
         this.board.set(kings, creatures);
         // this.matchingGUI.getFrame().setVisible(true);
     }
@@ -178,7 +178,7 @@ public class Controller {
                 this.mainGUI.disable();
                 SaveDialog saveDialog = new SaveDialog();
                 saveDialog.go();
-                GameEndDialog gameEndDialog=new GameEndDialog();
+                GameEndDialog gameEndDialog = new GameEndDialog();
                 gameEndDialog.go();
             }
             if (gameType == GameType.Looking) {
@@ -243,6 +243,7 @@ public class Controller {
     }
 
     public void useAbility() {
+        this.isMoving = false;
         if (positionBeChosed != null) {
             if (this.board.getCreature(positionBeChosed) == null) {
                 this.alert("提示", "未选择单位", 500);
