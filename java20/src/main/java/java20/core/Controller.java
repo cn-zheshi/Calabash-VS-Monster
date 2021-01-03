@@ -339,6 +339,7 @@ public class Controller {
             Calabash calabash = this.getCalabash(num);
             calabash.betray(1);
             this.board.setVal(calabash.getPosition(), Race.Goblin);
+            this.getKing(0).intensify(1);
         }
         if (str[0].contains("Set")) {
             int num = Integer.parseInt(str[1]);
