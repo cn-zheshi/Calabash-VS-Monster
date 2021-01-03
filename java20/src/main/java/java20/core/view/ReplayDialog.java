@@ -1,5 +1,7 @@
 package java20.core.view;
 
+import lombok.Data;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -12,10 +14,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 
+@Data
 public class ReplayDialog extends JDialog {
-    JPanel panel;
-    JButton cancelButton;
-    JButton replayButton;
+    private JPanel panel;
+    private JButton cancelButton;
+    private JButton replayButton;
 
     public ReplayDialog(){
         super(LookingGUI.getInstance().getFrame(), "replay", true);
@@ -32,6 +35,7 @@ public class ReplayDialog extends JDialog {
         panel.add(replayButton);
         cancelButton.addActionListener(new CancelAction());
         replayButton.addActionListener(new ReplayAction());
+        this.setResizable(false);
         this.setVisible(true);
     }
 

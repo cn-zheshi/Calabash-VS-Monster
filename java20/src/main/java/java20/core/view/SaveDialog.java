@@ -1,5 +1,7 @@
 package java20.core.view;
 
+import lombok.Data;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -16,10 +18,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.awt.BorderLayout;
 
+@Data
 public class SaveDialog extends JDialog {
-    JPanel panel;
-    JButton cancelButton;
-    JButton saveButton;
+    private JPanel panel;
+    private JButton cancelButton;
+    private JButton saveButton;
 
     public SaveDialog() {
         super(MainGUI.getInstance().getFrame(), "Save", true);
@@ -37,6 +40,7 @@ public class SaveDialog extends JDialog {
         panel.add(saveButton);
         cancelButton.addActionListener(new CancelAction());
         saveButton.addActionListener(new SaveAction());
+        this.setResizable(false);
         this.setVisible(true);
     }
 

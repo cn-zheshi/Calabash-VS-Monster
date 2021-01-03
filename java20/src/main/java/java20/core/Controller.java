@@ -9,6 +9,7 @@ import java20.core.model.figure.Goblin;
 import java20.core.model.figure.King;
 import java20.core.model.figure.movestrategy.*;
 import java20.core.model.figure.skill.*;
+import java20.core.view.GameEndDialog;
 import java20.core.view.LookingGUI;
 import java20.core.view.MainGUI;
 import java20.core.view.MatchingGUI;
@@ -138,7 +139,7 @@ public class Controller {
         creatures.add(seventh);
         this.board.setVal(seventhPosition, Race.Seventh);
         // TODO: 添加普通妖精
-
+        
         this.board.set(kings, creatures);
         // this.matchingGUI.getFrame().setVisible(true);
     }
@@ -174,9 +175,11 @@ public class Controller {
                 } else {
                     this.alert("你赢了", "You Win", 250);
                 }
+                this.mainGUI.disable();
                 SaveDialog saveDialog = new SaveDialog();
                 saveDialog.go();
-                this.mainGUI.disable();
+                GameEndDialog gameEndDialog=new GameEndDialog();
+                gameEndDialog.go();
             }
             if (gameType == GameType.Looking) {
                 turnPanel = new TurnPanel();
