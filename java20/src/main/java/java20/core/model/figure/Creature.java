@@ -69,21 +69,23 @@ public abstract class Creature {
     }
 
     public void betray(int turns) {
-        this.statusTime = turns * 2;
+        this.statusTime = turns;
         this.status = Status.TRAITOROUS;
     }
 
     public void updateStatus() {
         Board board = Board.getInstance();
-        if (this.status.equals(Status.ALIVE) || this.status.equals(Status.DEAD))
+        if (this.status.equals(Status.ALIVE) || this.status.equals(Status.DEAD)) {
             return;
+        }
+        --this.statusTime;
         if (this.statusTime == 0) {
-            if (this.isTraitorous())
+            if (this.isTraitorous()) {
                 board.setVal(this.position, this.race);
+            }
             this.status = Status.ALIVE;
             return;
         }
-        this.statusTime -= 2;
     }
 
     public boolean isDead() {
