@@ -38,7 +38,6 @@ public class Seduction extends Skill {
         if (!target.isDead() && !target.getPosition().equals(controller.getUnreachable())) {
             board.setVal(target.getPosition(), Race.Goblin);
             target.betray(1);
-            target.getSkill().employ(master);
             Client.getInstance().sendMessage("Betray " + result);
         }
         this.leftTime = this.cd;
