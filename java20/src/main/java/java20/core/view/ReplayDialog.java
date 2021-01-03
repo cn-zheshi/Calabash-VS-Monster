@@ -27,7 +27,7 @@ public class ReplayDialog extends JDialog {
         replayButton = new JButton("Replay");
     }
     public void go() {
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setBounds(550, 275, 300, 150);
         panel.setBackground(Color.WHITE);
         this.getContentPane().add(BorderLayout.CENTER, this.panel);
@@ -47,6 +47,7 @@ public class ReplayDialog extends JDialog {
             ReplayDialog.this.setVisible(false);
             ReplayDialog.this.dispose();
             LookingGUI.getInstance().disable();
+            System.exit(0);
         }
 
     }
