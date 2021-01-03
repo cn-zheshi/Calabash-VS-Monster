@@ -27,10 +27,10 @@ public class Flame extends Skill {
         Position masterPos = master.getPosition();
         Controller controller = Controller.getInstance();
         Board board = controller.getBoard();
-        Race race = master.getRace();
-        for (int i = 0; i < board.getWidth(); ++i) {
-            int x = masterPos.getX() + ((race.isCalabash() || race.isGrandpa()) ? 1 : -1);
-            Position targetPos = new Position(x, masterPos.getY());
+        Race race = board.getVal(masterPos);
+        for (int i = 0; i < board.getHeight(); ++i) {
+            int y = masterPos.getY() + ((race.isCalabash() || race.isGrandpa()) ? i : -i);
+            Position targetPos = new Position(masterPos.getX(), y);
             if (!targetPos.isValid(board.getWidth(), board.getHeight())) {
                 break;
             }
@@ -38,6 +38,9 @@ public class Flame extends Skill {
                 continue;
             }
             Creature target = board.getCreature(targetPos);
+            if (target.getPosition().equals(controller.getUnreachable())) {
+                continue;
+            }
             target.dead();
             break;
         }

@@ -33,9 +33,12 @@ public class ShockWave extends Skill {
         ArrayList<Position> available = new ArrayList<>();
         for (int i = 0; i < 4; ++i) {
             Position tmp = new Position(cur.getX() + posAround[i][0], cur.getY() + posAround[i][1]);
-            if (board.isEnemy(tmp, master.getRace())) {
+            if (board.isEnemy(tmp, board.getVal(master.getPosition()))) {
                 available.add(tmp);
             }
+        }
+        if (controller.getUnreachable() != null) {
+            available.remove(controller.getUnreachable());
         }
         for (Position position : available) {
             Creature creature = board.getCreature(position);

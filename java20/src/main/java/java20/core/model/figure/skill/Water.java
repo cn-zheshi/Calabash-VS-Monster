@@ -29,14 +29,17 @@ public class Water extends Skill {
         Position masterPos = master.getPosition();
         Controller controller = Controller.getInstance();
         Board board = controller.getBoard();
-        Race race = master.getRace();
+        Race race = board.getVal(masterPos);
         for (int i = 0; i < board.getWidth(); ++i) {
-            int x = masterPos.getX() + ((race.isCalabash() || race.isGrandpa()) ? 1 : -1);
-            Position targetPos = new Position(x, masterPos.getY());
+            int y = masterPos.getY() + ((race.isCalabash() || race.isGrandpa()) ? i : -i);
+            Position targetPos = new Position(masterPos.getX(), y);
             if (!targetPos.isValid(board.getWidth(), board.getHeight())) {
                 break;
             }
             if (!board.isEnemy(targetPos, race)) {
+                continue;
+            }
+            if (targetPos.equals(controller.getUnreachable())) {
                 continue;
             }
             Creature target = board.getCreature(targetPos);

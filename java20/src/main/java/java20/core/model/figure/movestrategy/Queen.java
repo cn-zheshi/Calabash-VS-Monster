@@ -1,11 +1,11 @@
 package java20.core.model.figure.movestrategy;
 
+import java20.core.Controller;
 import java20.core.model.battlefield.Board;
 import java20.util.Race;
 import java20.core.model.battlefield.Position;
 
 import java.util.ArrayList;
-
 
 /**
  * @author hwd
@@ -15,10 +15,11 @@ import java.util.ArrayList;
 public class Queen implements MoveStrategy {
 
     @Override
-    public ArrayList<Position> availablePos(Position position) {
+    public ArrayList<Position> availablePos(Position position, Race race) {
         int x = position.getX();
         int y = position.getY();
         ArrayList<Position> positions = new ArrayList<>();
+        Controller controller = Controller.getInstance();
         Board board = Board.getInstance();
         int edgeX = board.getWidth();
         int edgeY = board.getHeight();
@@ -33,7 +34,8 @@ public class Queen implements MoveStrategy {
                     positions.add(curA);
                 } else {
                     flagA = false;
-                    if (board.isEnemy(curA, Race.Snake)) positions.add(curA);
+                    if (board.isEnemy(curA, race))
+                        positions.add(curA);
                 }
             }
 
@@ -42,7 +44,8 @@ public class Queen implements MoveStrategy {
                     positions.add(curB);
                 } else {
                     flagB = false;
-                    if (board.isEnemy(curB, Race.Snake)) positions.add(curB);
+                    if (board.isEnemy(curB, race))
+                        positions.add(curB);
                 }
             }
         }
@@ -55,7 +58,8 @@ public class Queen implements MoveStrategy {
                     positions.add(curC);
                 } else {
                     flagC = false;
-                    if (board.isEnemy(curC, Race.Snake)) positions.add(curC);
+                    if (board.isEnemy(curC, race))
+                        positions.add(curC);
                 }
             }
 
@@ -64,7 +68,8 @@ public class Queen implements MoveStrategy {
                     positions.add(curD);
                 } else {
                     flagD = false;
-                    if (board.isEnemy(curD, Race.Snake)) positions.add(curD);
+                    if (board.isEnemy(curD, race))
+                        positions.add(curD);
                 }
             }
         }
@@ -81,7 +86,8 @@ public class Queen implements MoveStrategy {
                     positions.add(curA);
                 } else {
                     flagA = false;
-                    if (board.isEnemy(curA, Race.Snake)) positions.add(curA);
+                    if (board.isEnemy(curA, race))
+                        positions.add(curA);
                 }
             }
 
@@ -90,7 +96,8 @@ public class Queen implements MoveStrategy {
                     positions.add(curB);
                 } else {
                     flagB = false;
-                    if (board.isEnemy(curB, Race.Snake)) positions.add(curB);
+                    if (board.isEnemy(curB, race))
+                        positions.add(curB);
                 }
             }
 
@@ -99,7 +106,8 @@ public class Queen implements MoveStrategy {
                     positions.add(curC);
                 } else {
                     flagC = false;
-                    if (board.isEnemy(curC, Race.Snake)) positions.add(curC);
+                    if (board.isEnemy(curC, race))
+                        positions.add(curC);
                 }
             }
 
@@ -108,10 +116,16 @@ public class Queen implements MoveStrategy {
                     positions.add(curD);
                 } else {
                     flagD = false;
-                    if (board.isEnemy(curD, Race.Snake)) positions.add(curD);
+                    if (board.isEnemy(curD, race))
+                        positions.add(curD);
                 }
             }
         }
+
+        if (controller.getUnreachable() != null) {
+            positions.remove(controller.getUnreachable());
+        }
+
         return positions;
     }
 

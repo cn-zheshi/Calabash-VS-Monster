@@ -50,6 +50,7 @@ public abstract class Creature {
             return;
         this.statusTime = -2;
         this.status = Status.DEAD;
+        Board.getInstance().setVal(this.position, null);
     }
 
     public void seal(int turns) {
@@ -68,7 +69,7 @@ public abstract class Creature {
     }
 
     public void betray(int turns) {
-        this.statusTime = turns * 2;
+        this.statusTime = turns;
         this.status = Status.TRAITOROUS;
     }
 
@@ -123,6 +124,6 @@ public abstract class Creature {
      * @description 获得可以到达的坐标列表
      */
     public ArrayList<Position> getPosList() {
-        return this.moveStrategy.availablePos(this.position);
+        return this.moveStrategy.availablePos(this.position, Board.getInstance().getVal(position));
     }
 }

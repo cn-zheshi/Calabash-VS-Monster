@@ -19,6 +19,7 @@ import java20.core.view.SaveDialog;
 import java20.core.view.TurnPanel;
 import java20.util.GameType;
 import java20.util.Race;
+import java20.util.Status;
 import lombok.Data;
 
 import javax.swing.JDialog;
@@ -42,6 +43,7 @@ public class Controller {
     private PickDialog pickGui;
     private Board board;
     private Position positionBeChosed;
+    private Position unreachable;
     private GameType gameType;
     private boolean loop;
     private TurnPanel turnPanel;
@@ -82,6 +84,7 @@ public class Controller {
         this.isMoving = false;
         this.isMoved = false;
         this.positionBeChosed = null;
+        this.unreachable = null;
 
         ArrayList<King> kings = new ArrayList<>();
         ArrayList<Creature> creatures = new ArrayList<>();
@@ -239,6 +242,11 @@ public class Controller {
         if (this.board.getCreature(positionBeChosed).isAvailable()
                 || this.board.getCreature(positionBeChosed).isALive()) {
             isMoving = true;
+            return;
+        }
+        if (this.board.getCreature(positionBeChosed).isTraitorous() && this.side == Race.Monster) {
+            isMoving = true;
+            return;
         }
     }
 
@@ -318,10 +326,19 @@ public class Controller {
             Creature creature = this.board.getCreature(x, y);
             if (creature instanceof Calabash) {
                 ((Calabash) creature).employ();
+                if (creature.getName().equals("六娃") && this.gameType == GameType.Playing) {
+                    unreachable = creature.getPosition();
+                }
             }
             if (creature instanceof Goblin) {
                 ((Goblin) creature).employ();
             }
+        }
+        if (str[0].contains("Betray")) {
+            int num = Integer.parseInt(str[1]);
+            Calabash calabash = this.getCalabash(num);
+            calabash.betray(1);
+            this.board.setVal(calabash.getPosition(), Race.Goblin);
         }
         if (str[0].contains("Set")) {
             int num = Integer.parseInt(str[1]);
@@ -379,6 +396,7 @@ public class Controller {
 
     public void updateTurn() {
         ++this.turns;
+        this.unreachable = null;
         ArrayList<Creature> creatures = this.board.getCreatures();
         int len = creatures.size();
         for (int i = 0; i < len; ++i) {

@@ -59,7 +59,7 @@ public class Board {
         if (isEnemy(x1, y1, race)) {
             getCreature(x1, y1).dead();
         }
-        if (getCreature(x1, y1) == null || getCreature(x1, y1).isDead()) {
+        if (getCreature(x1, y1) == null) {
             setVal(x0, y0, null);
             setVal(x1, y1, race);
             if (Controller.getInstance().getGameType() == GameType.Playing && Controller.getInstance().isMyTurn()) {

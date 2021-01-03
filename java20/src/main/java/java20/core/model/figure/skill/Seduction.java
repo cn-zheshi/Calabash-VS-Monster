@@ -1,10 +1,12 @@
 package java20.core.model.figure.skill;
 
+import java20.client.Client;
 import java20.core.Controller;
 import java20.core.model.battlefield.Board;
 import java20.core.model.battlefield.Position;
 import java20.core.model.figure.Calabash;
 import java20.core.model.figure.Creature;
+import java20.core.model.figure.King;
 import java20.util.Race;
 
 /**
@@ -30,10 +32,15 @@ public class Seduction extends Skill {
         Controller controller = Controller.getInstance();
         int result = controller.displayPickFrame("选择魅惑对象", new String[] { "大娃", "二娃", "三娃", "四娃", "五娃", "六娃", "七娃" },
                 300, 100);
+        King grandpa = controller.getKing(0);
+        grandpa.intensify(1);
         Calabash target = controller.getCalabash(result);
-        board.setVal(target.getPosition(), Race.Goblin);
-        target.betray(1);
-        target.getSkill().employ(master);
+        if (!target.isDead() && !target.getPosition().equals(controller.getUnreachable())) {
+            board.setVal(target.getPosition(), Race.Goblin);
+            target.betray(1);
+            target.getSkill().employ(master);
+            Client.getInstance().sendMessage("Betray " + result);
+        }
         this.leftTime = this.cd;
     }
 
