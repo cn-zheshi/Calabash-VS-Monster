@@ -10,10 +10,6 @@ import java20.util.Race;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @author hwd
- * @date 2020-12-27
- **/
 @Getter
 @Setter
 public class Goblin extends Creature {

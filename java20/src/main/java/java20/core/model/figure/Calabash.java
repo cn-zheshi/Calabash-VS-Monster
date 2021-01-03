@@ -9,10 +9,6 @@ import java20.util.GameType;
 import java20.util.Race;
 import lombok.Getter;
 
-/**
- * @author hwd
- * @date 2020-12-26
- **/
 @Getter
 public class Calabash extends Creature {
 

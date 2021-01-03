@@ -10,10 +10,6 @@ import lombok.Data;
 
 import java.util.ArrayList;
 
-/**
- * @author hwd
- * @date 2020-12-26
- **/
 @Data
 public abstract class Creature {
 

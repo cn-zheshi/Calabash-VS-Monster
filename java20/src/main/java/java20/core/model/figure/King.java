@@ -9,11 +9,6 @@ import java20.util.GameType;
 import java20.util.Race;
 import lombok.Getter;
 
-/**
- * @author hwd
- * @date 2020-12-27 12:14 AM
- **/
-
 @Getter
 public class King extends Creature {
 
