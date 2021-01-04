@@ -526,7 +526,7 @@ public class Controller {
         creatures.forEach(Creature::updateStatus);
         kings.forEach(Creature::updateStatus);
         if (this.unreachable != null) {
-            if (!this.board.getCreature(this.unreachable).isReachable()) {
+            if (!this.board.getCreature(this.unreachable).isAvailable()) {
                 unreachable = null;
             }
         }
