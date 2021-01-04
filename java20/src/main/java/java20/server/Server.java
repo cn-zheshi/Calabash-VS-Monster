@@ -51,6 +51,22 @@ public class Server {
                 e.printStackTrace();
             }
         }
+
+        public BufferedReader getReader() {
+            return reader;
+        }
+
+        public void setReader(BufferedReader reader) {
+            this.reader = reader;
+        }
+
+        public Socket getSock() {
+            return sock;
+        }
+
+        public void setSock(Socket sock) {
+            this.sock = sock;
+        }
     }
 
     public static void main(String[] args) {

@@ -14,7 +14,7 @@ import java.util.ArrayList;
  **/
 public class ShockWave extends Skill {
 
-    private static int[][] posAround = new int[][] { { 2, 0 }, { -2, 0 }, { 0, 2 }, { 0, -2 } };
+    private static int[][] posAround = new int[][]{{2, 0}, {-2, 0}, {0, 2}, {0, -2}};
 
     /**
      * @param cd        如果为-2表示没有技能 -1表示随时可用且只能用一次的技能 如变身

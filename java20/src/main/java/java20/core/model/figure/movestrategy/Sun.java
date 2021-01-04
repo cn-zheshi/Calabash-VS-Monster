@@ -2,8 +2,8 @@ package java20.core.model.figure.movestrategy;
 
 import java20.core.Controller;
 import java20.core.model.battlefield.Board;
-import java20.util.Race;
 import java20.core.model.battlefield.Position;
+import java20.util.Race;
 
 import java.util.ArrayList;
 
@@ -14,8 +14,8 @@ import java.util.ArrayList;
  **/
 public class Sun implements MoveStrategy {
 
-    private static int[][] posAround = new int[][] { { 1, -2 }, { 2, -1 }, { 2, 1 }, { 1, 2 }, { -1, -2 }, { -2, -1 },
-            { -2, 1 }, { -1, 2 } };
+    private static int[][] posAround = new int[][]{{1, -2}, {2, -1}, {2, 1}, {1, 2}, {-1, -2}, {-2, -1},
+            {-2, 1}, {-1, 2}};
 
     @Override
     public ArrayList<Position> availablePos(Position position, Race race) {

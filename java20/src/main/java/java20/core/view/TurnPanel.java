@@ -1,15 +1,10 @@
 package java20.core.view;
 
-import javax.swing.JPanel;
-
 import java20.core.Controller;
 
-import lombok.Data;
+import javax.swing.*;
+import java.awt.*;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
-@Data
 public class TurnPanel extends JPanel {
     private int turn;
 
@@ -30,5 +25,13 @@ public class TurnPanel extends JPanel {
         g.clearRect(0, 0, 200, 600);
         g.setColor(Color.RED);
         g.fillOval(50, turn % 2 == 0 ? 50 : 450, 100, 100);
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public void setTurn(int turn) {
+        this.turn = turn;
     }
 }

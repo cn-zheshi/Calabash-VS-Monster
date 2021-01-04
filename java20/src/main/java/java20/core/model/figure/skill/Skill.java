@@ -1,19 +1,26 @@
 package java20.core.model.figure.skill;
 
 import java20.core.model.figure.Creature;
-import lombok.Getter;
 
 /**
  * @author hwd
  * @description
  * @date 2020-12-27
  **/
-@Getter
 public abstract class Skill {
 
     protected final int cd;
     protected final boolean onlyOnce;
+
+    public void setLeftTime(int leftTime) {
+        this.leftTime = leftTime;
+    }
+
     protected int leftTime;
+
+    public boolean isOnlyOnce() {
+        return onlyOnce;
+    }
 
     /**
      * @param cd        如果为-2表示没有技能 -1表示随时可用且只能用一次的技能 如变身

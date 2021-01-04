@@ -93,6 +93,13 @@ public class MainMenu extends JFrame {
         }
     }
 
+    public BackPanel getBackPanel() {
+        return backPanel;
+    }
+
+    public void setBackPanel(BackPanel backPanel) {
+        this.backPanel = backPanel;
+    }
 }
 
 

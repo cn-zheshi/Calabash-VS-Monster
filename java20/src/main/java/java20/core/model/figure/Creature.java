@@ -1,16 +1,13 @@
 package java20.core.model.figure;
 
-import java20.core.Controller;
 import java20.core.model.battlefield.Board;
 import java20.core.model.battlefield.Position;
 import java20.core.model.figure.movestrategy.MoveStrategy;
 import java20.util.Race;
 import java20.util.Status;
-import lombok.Data;
 
 import java.util.ArrayList;
 
-@Data
 public abstract class Creature {
 
     protected String name;
@@ -126,5 +123,53 @@ public abstract class Creature {
      */
     public ArrayList<Position> getPosList() {
         return this.moveStrategy.availablePos(this.position, Board.getInstance().getVal(position));
+    }
+
+    public Race getRace() {
+        return race;
+    }
+
+    public void setRace(Race race) {
+        this.race = race;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public MoveStrategy getMoveStrategy() {
+        return moveStrategy;
+    }
+
+    public void setMoveStrategy(MoveStrategy moveStrategy) {
+        this.moveStrategy = moveStrategy;
+    }
+
+    public int getStatusTime() {
+        return statusTime;
+    }
+
+    public void setStatusTime(int statusTime) {
+        this.statusTime = statusTime;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -1,24 +1,11 @@
 package java20.core.view;
 
-import lombok.Data;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.awt.BorderLayout;
+import java.io.*;
 
-@Data
 public class SaveDialog extends JDialog {
     private JPanel panel;
     private JButton cancelButton;
@@ -42,6 +29,30 @@ public class SaveDialog extends JDialog {
         saveButton.addActionListener(new SaveAction());
         this.setResizable(false);
         this.setVisible(true);
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
+    }
+
+    public JButton getCancelButton() {
+        return cancelButton;
+    }
+
+    public void setCancelButton(JButton cancelButton) {
+        this.cancelButton = cancelButton;
+    }
+
+    public JButton getSaveButton() {
+        return saveButton;
+    }
+
+    public void setSaveButton(JButton saveButton) {
+        this.saveButton = saveButton;
     }
 
     public class CancelAction implements ActionListener {

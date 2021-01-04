@@ -1,18 +1,10 @@
 package java20.core.view;
 
-import lombok.Data;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.BorderLayout;
 
-@Data
 public class GameEndDialog extends JDialog {
     private JPanel panel;
     private JButton endButton;
@@ -32,6 +24,22 @@ public class GameEndDialog extends JDialog {
         endButton.addActionListener(new EndAction());
         this.setResizable(false);
         this.setVisible(true);
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
+    }
+
+    public JButton getEndButton() {
+        return endButton;
+    }
+
+    public void setEndButton(JButton endButton) {
+        this.endButton = endButton;
     }
 
     public class EndAction implements ActionListener {

@@ -1,31 +1,24 @@
 package java20.core.view;
 
-import lombok.Data;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import java20.core.Controller;
 
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.BorderLayout;
 
-@Data
 public class ReplayDialog extends JDialog {
     private JPanel panel;
     private JButton cancelButton;
     private JButton replayButton;
 
-    public ReplayDialog(){
+    public ReplayDialog() {
         super(LookingGUI.getInstance().getFrame(), "replay", true);
         panel = new JPanel();
         cancelButton = new JButton("Cancel");
         replayButton = new JButton("Replay");
     }
+
     public void go() {
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.setBounds(550, 275, 300, 150);
@@ -37,6 +30,30 @@ public class ReplayDialog extends JDialog {
         replayButton.addActionListener(new ReplayAction());
         this.setResizable(false);
         this.setVisible(true);
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
+    }
+
+    public JButton getCancelButton() {
+        return cancelButton;
+    }
+
+    public void setCancelButton(JButton cancelButton) {
+        this.cancelButton = cancelButton;
+    }
+
+    public JButton getReplayButton() {
+        return replayButton;
+    }
+
+    public void setReplayButton(JButton replayButton) {
+        this.replayButton = replayButton;
     }
 
     public class CancelAction implements ActionListener {
@@ -62,7 +79,7 @@ public class ReplayDialog extends JDialog {
             ReplayDialog.this.setVisible(false);
             ReplayDialog.this.dispose();
         }
-        
+
     }
 
 }
