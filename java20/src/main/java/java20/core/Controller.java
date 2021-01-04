@@ -38,6 +38,7 @@ public class Controller {
     private boolean isMyTurn;
     private boolean isMoving;
     private boolean isMoved;
+    private boolean isBetrayMoved;
     private int turns;
 
     private static Controller controllerInstance = new Controller();
@@ -69,6 +70,7 @@ public class Controller {
         this.lose = false;
         this.isMoving = false;
         this.isMoved = false;
+        isBetrayMoved = false;
         this.positionBeChosed = null;
         this.unreachable = null;
 
@@ -229,7 +231,6 @@ public class Controller {
         creatures.add(goblin20);
         this.board.setVal(pos20, Race.Goblin);
 
-
         this.board.set(kings, creatures);
         // this.matchingGUI.getFrame().setVisible(true);
     }
@@ -305,6 +306,8 @@ public class Controller {
                 positionBeChosed = null;
                 if (!creature.isTraitorous()) {
                     isMoved = true;
+                } else {
+                    isBetrayMoved = true;
                 }
             } else {
                 positionBeChosed = position;
@@ -331,7 +334,7 @@ public class Controller {
             isMoving = true;
             return;
         }
-        if (this.board.getCreature(positionBeChosed).isTraitorous() && this.side == Race.Monster) {
+        if (this.board.getCreature(positionBeChosed).isTraitorous() && this.side == Race.Monster && !isBetrayMoved) {
             isMoving = true;
             return;
         }
@@ -412,7 +415,7 @@ public class Controller {
             int y = Integer.parseInt(str[1].split(",")[1]);
             Creature creature = this.board.getCreature(x, y);
             if (creature instanceof Calabash) {
-                if(!creature.getName().equals("七娃")){
+                if (!creature.getName().equals("七娃")) {
                     ((Calabash) creature).employ();
                 }
                 if (creature.getName().equals("六娃") && this.gameType == GameType.Playing) {
