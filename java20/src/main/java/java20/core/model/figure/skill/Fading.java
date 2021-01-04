@@ -32,18 +32,19 @@ public class Fading extends Skill {
                 300, 100);
         Calabash target = controller.getCalabash(result);
         if (!target.isDead() && !target.getPosition().equals(controller.getUnreachable())) {
-            target.seal(1);
+            if (!target.isTraitorous()) {
+                target.seal(1);
+                if (Controller.getInstance().getGameType() == GameType.Playing && Controller.getInstance().isMyTurn()) {
+                    Client.getInstance().sendMessage("Seal " + target.getPosition().toString());
+                }
+            }
             Position cur = target.getPosition();
             Position destination = new Position(cur);
             if (destination.getY() != 0) {
                 destination.setY(destination.getY() - 1);
             }
-            board.moveTo(cur, destination, target.getRace());
-            target.setPosition(destination);
+            board.moveTo(cur, destination, board.getVal(cur));
             this.leftTime = this.cd;
-            if (Controller.getInstance().getGameType() == GameType.Playing && Controller.getInstance().isMyTurn()) {
-                Client.getInstance().sendMessage("Seal " + target.getPosition().toString());
-            }
         }
     }
 }

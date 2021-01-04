@@ -353,6 +353,10 @@ public class Controller {
             }
             if (Board.getInstance().getCreature(positionBeChosed) instanceof Calabash) {
                 Calabash calabash = (Calabash) Board.getInstance().getCreature(positionBeChosed);
+                if (calabash.isReachable()) {
+                    this.alert("提示", "技能封印中", 500);
+                    return;
+                }
                 if (calabash.isSkillAvailable()) {
                     calabash.employ();
                     positionBeChosed = null;
@@ -367,6 +371,10 @@ public class Controller {
                 }
             } else if ((Board.getInstance().getCreature(positionBeChosed) instanceof King)) {
                 King king = (King) Board.getInstance().getCreature(positionBeChosed);
+                if (king.isReachable()) {
+                    this.alert("提示", "技能封印中", 500);
+                    return;
+                }
                 if (king.isSkillAvailable()) {
                     king.employ();
                     positionBeChosed = null;
@@ -383,6 +391,10 @@ public class Controller {
                 Goblin goblin = (Goblin) (Board.getInstance().getCreature(positionBeChosed));
                 if (goblin.getRace() == Race.Demon) {
                     this.alert("提示", "该单位无技能", 500);
+                    return;
+                }
+                if (goblin.isReachable()) {
+                    this.alert("提示", "技能封印中", 500);
                     return;
                 }
                 if (goblin.isSkillAvailable()) {
