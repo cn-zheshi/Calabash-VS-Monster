@@ -20,7 +20,9 @@ public class Invisibility extends Skill {
 
     @Override
     public void employ(Creature master) {
-        master.hide(1);
+        if (!master.isTraitorous()) {
+            master.hide(1);
+        }
         this.leftTime = this.cd;
     }
 

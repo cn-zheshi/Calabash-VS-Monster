@@ -9,7 +9,6 @@ import java20.core.model.figure.Creature;
  **/
 public class Indestructibility extends Skill {
 
-
     /**
      * @param cd        如果为-2表示没有技能 -1表示随时可用且只能用一次的技能 如变身
      * @param onlyOnce  只能用一次
@@ -21,7 +20,9 @@ public class Indestructibility extends Skill {
 
     @Override
     public void employ(Creature master) {
-        master.intensify(1);
+        if (!master.isTraitorous()) {
+            master.intensify(1);
+        }
         this.leftTime = this.cd;
     }
 
