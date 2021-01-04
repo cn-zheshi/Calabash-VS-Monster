@@ -87,7 +87,7 @@ public class Controller {
         this.board.setVal(snakePosition, Race.Snake);
 
         Position scorpionPosition = new Position(4, 9);
-        King scorpion = new King("蝎子精", Race.Scorpion, scorpionPosition, new Scorpion(), new Fading(4, false, true));
+        King scorpion = new King("蝎子精", Race.Scorpion, scorpionPosition, new Periphery(), new Fading(4, false, true));
         kings.add(scorpion);
         this.board.setVal(scorpionPosition, Race.Scorpion);
 

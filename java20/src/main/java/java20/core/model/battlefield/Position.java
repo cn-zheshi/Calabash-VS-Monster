@@ -1,7 +1,8 @@
 package java20.core.model.battlefield;
 
 public class Position {
-    int x, y;
+    private int x;
+    private int y;
 
     public Position(int x, int y) {
         this.x = x;
