@@ -46,7 +46,7 @@ public class Client {
 
     public void setUpNetworking() {
         try {
-            sock = new Socket("172.26.69.211", 3000);
+            sock = new Socket("127.0.0.1", 3000);
             InputStreamReader streamReader = new InputStreamReader(sock.getInputStream());
             reader = new BufferedReader(streamReader);
             writer = new PrintWriter(sock.getOutputStream());
