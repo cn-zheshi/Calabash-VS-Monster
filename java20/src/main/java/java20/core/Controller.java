@@ -12,7 +12,6 @@ import java20.core.model.figure.skill.*;
 import java20.core.view.*;
 import java20.util.GameType;
 import java20.util.Race;
-import lombok.Data;
 
 import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
@@ -20,7 +19,6 @@ import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 
-@Data
 public class Controller {
 
     private MainGUI mainGUI;
@@ -558,4 +556,139 @@ public class Controller {
         this.isMoved = isMoved;
     }
 
+    public MainGUI getMainGUI() {
+        return mainGUI;
+    }
+
+    public void setMainGUI(MainGUI mainGUI) {
+        this.mainGUI = mainGUI;
+    }
+
+    public LookingGUI getLookingGUI() {
+        return lookingGUI;
+    }
+
+    public void setLookingGUI(LookingGUI lookingGUI) {
+        this.lookingGUI = lookingGUI;
+    }
+
+    public MatchingGUI getMatchingGUI() {
+        return matchingGUI;
+    }
+
+    public void setMatchingGUI(MatchingGUI matchingGUI) {
+        this.matchingGUI = matchingGUI;
+    }
+
+    public PickDialog getPickGui() {
+        return pickGui;
+    }
+
+    public void setPickGui(PickDialog pickGui) {
+        this.pickGui = pickGui;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    public Position getPositionBeChosed() {
+        return positionBeChosed;
+    }
+
+    public void setPositionBeChosed(Position positionBeChosed) {
+        this.positionBeChosed = positionBeChosed;
+    }
+
+    public Position getUnreachable() {
+        return unreachable;
+    }
+
+    public void setUnreachable(Position unreachable) {
+        this.unreachable = unreachable;
+    }
+
+    public GameType getGameType() {
+        return gameType;
+    }
+
+    public void setGameType(GameType gameType) {
+        this.gameType = gameType;
+    }
+
+    public boolean isLoop() {
+        return loop;
+    }
+
+    public void setLoop(boolean loop) {
+        this.loop = loop;
+    }
+
+    public TurnPanel getTurnPanel() {
+        return turnPanel;
+    }
+
+    public void setTurnPanel(TurnPanel turnPanel) {
+        this.turnPanel = turnPanel;
+    }
+
+    public Race getSide() {
+        return side;
+    }
+
+    public void setSide(Race side) {
+        this.side = side;
+    }
+
+    public boolean isLose() {
+        return lose;
+    }
+
+    public void setLose(boolean lose) {
+        this.lose = lose;
+    }
+
+    public boolean isMyTurn() {
+        return isMyTurn;
+    }
+
+    public void setMyTurn(boolean myTurn) {
+        isMyTurn = myTurn;
+    }
+
+    public void setMoving(boolean moving) {
+        isMoving = moving;
+    }
+
+    public void setMoved(boolean moved) {
+        isMoved = moved;
+    }
+
+    public boolean isBetrayMoved() {
+        return isBetrayMoved;
+    }
+
+    public void setBetrayMoved(boolean betrayMoved) {
+        isBetrayMoved = betrayMoved;
+    }
+
+    public int getTurns() {
+        return turns;
+    }
+
+    public void setTurns(int turns) {
+        this.turns = turns;
+    }
+
+    public static Controller getControllerInstance() {
+        return controllerInstance;
+    }
+
+    public static void setControllerInstance(Controller controllerInstance) {
+        Controller.controllerInstance = controllerInstance;
+    }
 }

@@ -32,7 +32,7 @@ public class Seduction extends Skill {
         Controller controller = Controller.getInstance();
         int result = controller.displayPickFrame("选择魅惑对象", new String[]{"大娃", "三娃", "四娃", "五娃", "六娃", "七娃"},
                 300, 100);
-        result=(result == 0) ? 0 : result + 1;
+        result = (result == 0) ? 0 : result + 1;
         King grandpa = controller.getKing(0);
         grandpa.intensify(1);
         Calabash target = controller.getCalabash(result);

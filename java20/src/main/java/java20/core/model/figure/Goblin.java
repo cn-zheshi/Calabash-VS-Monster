@@ -7,11 +7,7 @@ import java20.core.model.figure.movestrategy.MoveStrategy;
 import java20.core.model.figure.skill.Skill;
 import java20.util.GameType;
 import java20.util.Race;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 public class Goblin extends Creature {
 
     private Skill skill;
@@ -32,5 +28,13 @@ public class Goblin extends Creature {
 
     public boolean isSkillAvailable() {
         return this.skill.isAvailable();
+    }
+
+    public Skill getSkill() {
+        return skill;
+    }
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
     }
 }

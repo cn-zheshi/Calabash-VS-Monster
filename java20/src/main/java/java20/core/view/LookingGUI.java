@@ -3,13 +3,11 @@ package java20.core.view;
 import java20.core.Controller;
 import java20.core.model.battlefield.Board;
 import java20.util.Race;
-import lombok.Data;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
-@Data
 public class LookingGUI {
     private JButton[][] buttons;
     private JFrame frame;
@@ -148,4 +146,147 @@ public class LookingGUI {
         Controller.getInstance().setLoop(false);
     }
 
+    public JButton[][] getButtons() {
+        return buttons;
+    }
+
+    public void setButtons(JButton[][] buttons) {
+        this.buttons = buttons;
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public void setFrame(JFrame frame) {
+        this.frame = frame;
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
+    }
+
+    public File getF() {
+        return f;
+    }
+
+    public void setF(File f) {
+        this.f = f;
+    }
+
+    public ImageIcon getBackground() {
+        return background;
+    }
+
+    public void setBackground(ImageIcon background) {
+        this.background = background;
+    }
+
+    public ImageIcon getFirst() {
+        return first;
+    }
+
+    public void setFirst(ImageIcon first) {
+        this.first = first;
+    }
+
+    public ImageIcon getSecond() {
+        return second;
+    }
+
+    public void setSecond(ImageIcon second) {
+        this.second = second;
+    }
+
+    public ImageIcon getThird() {
+        return third;
+    }
+
+    public void setThird(ImageIcon third) {
+        this.third = third;
+    }
+
+    public ImageIcon getForth() {
+        return forth;
+    }
+
+    public void setForth(ImageIcon forth) {
+        this.forth = forth;
+    }
+
+    public ImageIcon getFifth() {
+        return fifth;
+    }
+
+    public void setFifth(ImageIcon fifth) {
+        this.fifth = fifth;
+    }
+
+    public ImageIcon getSixth() {
+        return sixth;
+    }
+
+    public void setSixth(ImageIcon sixth) {
+        this.sixth = sixth;
+    }
+
+    public ImageIcon getSeventh() {
+        return seventh;
+    }
+
+    public void setSeventh(ImageIcon seventh) {
+        this.seventh = seventh;
+    }
+
+    public ImageIcon getGrandpa() {
+        return grandpa;
+    }
+
+    public void setGrandpa(ImageIcon grandpa) {
+        this.grandpa = grandpa;
+    }
+
+    public ImageIcon getMonster() {
+        return monster;
+    }
+
+    public void setMonster(ImageIcon monster) {
+        this.monster = monster;
+    }
+
+    public ImageIcon getStrongerMonster() {
+        return strongerMonster;
+    }
+
+    public void setStrongerMonster(ImageIcon strongerMonster) {
+        this.strongerMonster = strongerMonster;
+    }
+
+    public ImageIcon getSnake() {
+        return snake;
+    }
+
+    public void setSnake(ImageIcon snake) {
+        this.snake = snake;
+    }
+
+    public ImageIcon getScorpion() {
+        return scorpion;
+    }
+
+    public void setScorpion(ImageIcon scorpion) {
+        this.scorpion = scorpion;
+    }
+
+    public static LookingGUI getLookingGUI() {
+        return lookingGUI;
+    }
+
+    public static void setLookingGUI(LookingGUI lookingGUI) {
+        LookingGUI.lookingGUI = lookingGUI;
+    }
 }

@@ -6,6 +6,6 @@ import java20.util.Race;
 import java.util.ArrayList;
 
 public interface MoveStrategy {
-  
+
     public ArrayList<Position> availablePos(Position position, Race race);
 }

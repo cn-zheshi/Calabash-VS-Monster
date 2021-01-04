@@ -6,11 +6,9 @@ import java20.core.model.figure.Creature;
 import java20.core.model.figure.King;
 import java20.util.GameType;
 import java20.util.Race;
-import lombok.Data;
 
 import java.util.ArrayList;
 
-@Data
 public class Board {
 
     private ArrayList<King> kings;
@@ -168,11 +166,51 @@ public class Board {
         return getCreature(new Position(x, y));
     }
 
+    public ArrayList<King> getKings() {
+        return kings;
+    }
+
+    public void setKings(ArrayList<King> kings) {
+        this.kings = kings;
+    }
+
     public int getWidth() {
         return width;
     }
 
     public int getHeight() {
         return height;
+    }
+
+    public ArrayList<Creature> getCreatures() {
+        return creatures;
+    }
+
+    public void setCreatures(ArrayList<Creature> creatures) {
+        this.creatures = creatures;
+    }
+
+    public Race[][] getGrid() {
+        return grid;
+    }
+
+    public void setGrid(Race[][] grid) {
+        this.grid = grid;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public static Board getBoard() {
+        return board;
+    }
+
+    public static void setBoard(Board board) {
+        Board.board = board;
     }
 }

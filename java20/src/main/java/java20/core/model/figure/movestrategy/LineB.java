@@ -2,8 +2,8 @@ package java20.core.model.figure.movestrategy;
 
 import java20.core.Controller;
 import java20.core.model.battlefield.Board;
-import java20.util.Race;
 import java20.core.model.battlefield.Position;
+import java20.util.Race;
 
 import java.util.ArrayList;
 
@@ -42,7 +42,7 @@ public class LineB implements MoveStrategy {
                 arr.add(cur);
             }
         }
-        if(controller.getUnreachable()!=null){
+        if (controller.getUnreachable() != null) {
             arr.remove(controller.getUnreachable());
         }
         return arr;

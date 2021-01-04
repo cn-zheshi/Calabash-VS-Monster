@@ -1,7 +1,6 @@
 package java20.client;
 
 import java20.core.Controller;
-import java20.core.view.MatchingGUI;
 import java20.util.Race;
 
 import java.io.*;

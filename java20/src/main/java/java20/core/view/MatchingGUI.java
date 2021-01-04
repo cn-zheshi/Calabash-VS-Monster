@@ -1,14 +1,9 @@
 package java20.core.view;
 
-import lombok.Data;
-
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
+import javax.swing.*;
 import javax.swing.plaf.FontUIResource;
+import java.awt.*;
 
-import java.awt.Font;
-
-@Data
 public class MatchingGUI {
 
     private JFrame frame = new JFrame();
@@ -16,6 +11,22 @@ public class MatchingGUI {
 
     public static void main(String[] args) {
         new MatchingGUI().go();
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public void setFrame(JFrame frame) {
+        this.frame = frame;
+    }
+
+    public JTextArea getJtextArea() {
+        return jtextArea;
+    }
+
+    public void setJtextArea(JTextArea jtextArea) {
+        this.jtextArea = jtextArea;
     }
 
     public void go() {

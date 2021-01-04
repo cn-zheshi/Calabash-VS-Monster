@@ -1,7 +1,5 @@
 package java20.core.view;
 
-import lombok.Data;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,7 +7,6 @@ import java.awt.*;
  * @author hwd
  * @date 2020-12-27
  **/
-@Data
 public class PickDialog extends JDialog {
     private PickPanel pickPanel;
     private boolean end;
@@ -44,6 +41,30 @@ public class PickDialog extends JDialog {
         this.dispose();
     }
 
+    public PickPanel getPickPanel() {
+        return pickPanel;
+    }
+
+    public void setPickPanel(PickPanel pickPanel) {
+        this.pickPanel = pickPanel;
+    }
+
+    public boolean isEnd() {
+        return end;
+    }
+
+    public void setEnd(boolean end) {
+        this.end = end;
+    }
+
+    public int getResult() {
+        return result;
+    }
+
+    public void setResult(int result) {
+        this.result = result;
+    }
+
     public class PickPanel extends JPanel {
 
         public PickPanel(String[] choices) {
@@ -76,7 +97,7 @@ public class PickDialog extends JDialog {
     }
 
     public static void main(String[] args) {
-        PickDialog test = new PickDialog("选择", new String[] { "大娃", "二娃", "三娃", "四娃", "五娃" }, 210, 115);
+        PickDialog test = new PickDialog("选择", new String[]{"大娃", "二娃", "三娃", "四娃", "五娃"}, 210, 115);
         test.go();
         System.out.println(test.getResult());
     }

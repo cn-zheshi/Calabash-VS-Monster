@@ -28,7 +28,7 @@ public class Fading extends Skill {
     public void employ(Creature master) {
         Controller controller = Controller.getInstance();
         Board board = controller.getBoard();
-        int result = controller.displayPickFrame("选择葫芦娃", new String[] { "大娃", "二娃", "三娃", "四娃", "五娃", "六娃", "七娃" },
+        int result = controller.displayPickFrame("选择葫芦娃", new String[]{"大娃", "二娃", "三娃", "四娃", "五娃", "六娃", "七娃"},
                 300, 100);
         Calabash target = controller.getCalabash(result);
         if (!target.isDead() && !target.getPosition().equals(controller.getUnreachable())) {

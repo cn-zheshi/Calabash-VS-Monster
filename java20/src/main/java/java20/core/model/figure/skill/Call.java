@@ -19,8 +19,8 @@ import java.util.ArrayList;
 
 public class Call extends Skill {
 
-    private static int[][] posAround = new int[][] { { -1, -1 }, { -1, 0 }, { -1, 1 }, { 0, -1 }, { 0, 1 }, { 1, -1 },
-            { 1, 0 }, { 1, 1 } };
+    private static int[][] posAround = new int[][]{{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1},
+            {1, 0}, {1, 1}};
 
     /**
      * @param cd        如果为-2表示没有技能 -1表示随时可用且只能用一次的技能 如变身
@@ -44,7 +44,7 @@ public class Call extends Skill {
             }
         }
         int rand = Rand.randNum(available.size());
-        int result = controller.displayPickFrame("选择召唤对象", new String[] { "大娃", "二娃", "三娃", "四娃", "五娃", "六娃", "七娃" },
+        int result = controller.displayPickFrame("选择召唤对象", new String[]{"大娃", "二娃", "三娃", "四娃", "五娃", "六娃", "七娃"},
                 300, 100);
         Calabash target = controller.getCalabash(result);
         if (target.isDead()) {

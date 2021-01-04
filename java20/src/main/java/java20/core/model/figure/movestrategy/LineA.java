@@ -1,11 +1,11 @@
 package java20.core.model.figure.movestrategy;
 
-import java.util.ArrayList;
-
 import java20.core.Controller;
 import java20.core.model.battlefield.Board;
-import java20.util.Race;
 import java20.core.model.battlefield.Position;
+import java20.util.Race;
+
+import java.util.ArrayList;
 
 /**
  * @description 直线
