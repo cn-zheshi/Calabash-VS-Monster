@@ -115,7 +115,6 @@ public class MainGUI {
         turnEndButton.setSize(120, 40);
         turnEndButton.setLocation(640, 500);
 
-
         frame.setSize(800, 635);
         frame.setLayout(null);
         frame.setResizable(false);
@@ -227,7 +226,7 @@ public class MainGUI {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (Controller.getInstance().isMyTurn() && !Controller.getInstance().isMoving()
-                    && !Controller.getInstance().isMoved()) {
+                    && (!Controller.getInstance().isMoved() || Controller.getInstance().isBetrayMoved())) {
                 Controller.getInstance().move();
             }
         }
