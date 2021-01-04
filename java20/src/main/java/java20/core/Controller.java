@@ -509,7 +509,6 @@ public class Controller {
 
     public void updateTurn() {
         ++this.turns;
-        this.unreachable = null;
         ArrayList<Creature> creatures = this.board.getCreatures();
         int len = creatures.size();
         for (int i = 0; i < len; ++i) {
@@ -526,6 +525,11 @@ public class Controller {
 
         creatures.forEach(Creature::updateStatus);
         kings.forEach(Creature::updateStatus);
+        if (this.unreachable != null) {
+            if (!this.board.getCreature(this.unreachable).isReachable()) {
+                unreachable = null;
+            }
+        }
     }
 
     private void alert(String title, String content, int width) {
