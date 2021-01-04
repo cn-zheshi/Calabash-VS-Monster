@@ -46,7 +46,11 @@ public abstract class Skill {
     }
 
     public int getLeftTime() {
-        return this.leftTime / 2;
+        if (leftTime < 2) {
+            return leftTime;
+        } else {
+            return this.leftTime / 2;
+        }
     }
 
     /**

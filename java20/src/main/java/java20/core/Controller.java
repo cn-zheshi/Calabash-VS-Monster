@@ -357,7 +357,12 @@ public class Controller {
                     calabash.employ();
                     positionBeChosed = null;
                 } else {
-                    this.alert("提示", "不能使用技能", 500);
+                    if (calabash.getSkill().getLeftTime() == -1) {
+                        this.alert("提示", "技能已使用", 500);
+                    } else {
+                        int leftTime = calabash.getSkill().getLeftTime();
+                        this.alert("提示", "CD:" + leftTime + "回合", 500);
+                    }
                     return;
                 }
             } else if ((Board.getInstance().getCreature(positionBeChosed) instanceof King)) {
@@ -366,7 +371,12 @@ public class Controller {
                     king.employ();
                     positionBeChosed = null;
                 } else {
-                    this.alert("提示", "不能使用技能", 500);
+                    if (king.getSkill().getLeftTime() == -1) {
+                        this.alert("提示", "技能已使用", 500);
+                    } else {
+                        int leftTime = king.getSkill().getLeftTime();
+                        this.alert("提示", "CD:" + leftTime + "回合", 500);
+                    }
                     return;
                 }
             } else if ((Board.getInstance().getCreature(positionBeChosed) instanceof Goblin)) {
