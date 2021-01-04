@@ -412,7 +412,9 @@ public class Controller {
             int y = Integer.parseInt(str[1].split(",")[1]);
             Creature creature = this.board.getCreature(x, y);
             if (creature instanceof Calabash) {
-                ((Calabash) creature).employ();
+                if(!creature.getName().equals("七娃")){
+                    ((Calabash) creature).employ();
+                }
                 if (creature.getName().equals("六娃") && this.gameType == GameType.Playing) {
                     unreachable = creature.getPosition();
                 }
